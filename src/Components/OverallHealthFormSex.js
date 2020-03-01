@@ -22,7 +22,6 @@ class OverallHealthFormSex extends Component {
                 className="overallHealthFormSex wrapper"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputSex)}
             >
-                <p>Sex:</p>
                 <label htmlFor="petSexMale">Intact male</label>
                 <input
                     type="radio"
@@ -35,7 +34,7 @@ class OverallHealthFormSex extends Component {
                 <label htmlFor="petSexFemale">Intact female</label>
                 <input
                     type="radio"
-                    id="petSexFeale"
+                    id="petSexFemale"
                     name="sex"
                     value="Female"
                     onChange={this.getUserInputSex}

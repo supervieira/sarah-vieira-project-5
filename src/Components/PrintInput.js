@@ -5,7 +5,7 @@ function PrintInput(props){
         // How to keep info printed on page after refresh?
         <div className= "wrapper">
             <p>Name: {props.name}</p>
-            <div>
+            <div className="overallHealthPhoto">
                 <img src="{props.photo}" alt="Photo of pet"/>
             </div>
             <p>Age: {props.age}</p>

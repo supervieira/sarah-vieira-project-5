@@ -34,21 +34,81 @@ class App extends Component {
     }
   }
 
+  // componentDidMount(){
+    // Trying to push data to firebase on submit
+    // const dbName = firebase.database().ref('overallHealth')
+    // dbName.update({ name: this.state.name })
+    // Did not work...
+
+    // ----------------------------
+
+    // // Update firebase with userInput
+    // const dbOverallHealth = firebase.database().ref('overallHealth')
+    // dbOverallHealth.update({name: this.state.name})
+
+    // // Save firebase data into state:
+    // const dbName = firebase.database().ref('overallHealth/name')
+
+    // dbName.on('value', (response) => {
+    //   console.log(response.val())
+
+    //   const name = response.val();
+
+    //   this.setState({
+    //     name: name,
+    //   }, () => {
+    //     console.log(this.state.name)
+    //   })
+    // })
+
+    // Also did not work...
+  // }
+
   // ---------------------------------------------------------
   // These functions save user input to App.js state and update firebase upon submit:
 
+  // When name is updated by user...
   submitUserInputName = (e, userInput) => {
+    // Prevent default
     e.preventDefault();
 
     this.setState({
       name: userInput
     }, () => {
       console.log(this.state.name)
-
-      // Trying to push data to firebase on submit
-      const dbName = firebase.database().ref('overallHealth')
-      dbName.update({name: this.state.name})
     })
+
+    // Update firebase with userInput
+    const dbOverallHealth = firebase.database().ref('overallHealth')
+    dbOverallHealth.update({name: userInput})
+
+    // Save firebase data into state:
+    const dbName = firebase.database().ref('overallHealth/name')
+
+    dbName.on('value', (response) => {
+      console.log(response.val())
+
+      const name = response.val();
+
+      this.setState({
+        name: name,
+      }, () => {
+        console.log(this.state.name)
+      })
+    })
+
+    // Problem: DOES NOT SAVE DATA ON PAGE AFTER REFRESH :(
+
+    // Save firebase data into state
+    // this.setState({
+    //   name: userInput
+    // }, () => {
+    //   console.log(this.state.name)
+    // })
+
+    // const dbOverallHealth = firebase.database().ref('overallHealth')
+    // dbOverallHealth.update({ name: userInput })
+    
   }
 
   submitUserInputPhoto = (e, userInput) => {
@@ -151,33 +211,41 @@ class App extends Component {
 
         {/* <OverallHealth/> */}
 
-        <OverallHealthFormName
-          functionFromParent = {this.submitUserInputName}
-        />
+        <div className="OverallHealth">
+          <h2>Overall Health</h2>
+          
+          
+          <PrintInput
+            name = {this.state.name}
+            photo = {this.state.photo}
+            age = {this.state.age}
+            breed = {this.state.breed}
+            sex = {this.state.sex}
+          />
 
-        <OverallHealthFormPhoto
-          functionFromParent={this.submitUserInputPhoto}
-        />
+          <div className="OverallHealthUpdate">
+            <OverallHealthFormName
+              functionFromParent = {this.submitUserInputName}
+            />
 
-        <OverallHealthFormAge
-          functionFromParent={this.submitUserInputAge}
-        />
+            <OverallHealthFormPhoto
+              functionFromParent={this.submitUserInputPhoto}
+            />
 
-        <OverallHealthFormBreed
-          functionFromParent={this.submitUserInputBreed}
-        />
+            <OverallHealthFormAge
+              functionFromParent={this.submitUserInputAge}
+            />
 
-        <OverallHealthFormSex
-          functionFromParent={this.submitUserInputSex}
-        />
+            <OverallHealthFormBreed
+              functionFromParent={this.submitUserInputBreed}
+            />
 
-        <PrintInput
-          name = {this.state.name}
-          photo = {this.state.photo}
-          age = {this.state.age}
-          breed = {this.state.breed}
-          sex = {this.state.sex}
-        />
+            <OverallHealthFormSex
+              functionFromParent={this.submitUserInputSex}
+            />
+          </div>
+        </div>
+
 
         <Calendar/>
       </div>

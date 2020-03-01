@@ -143,6 +143,27 @@ h1{
   margin: 0 10vw;
 }
 
+/* OVERALL HEALTH SECTION STYLING */
+
+.OverallHealth input{
+  margin: 10px;
+}
+
+.overallHealthFormPhoto button{
+  margin-left: 2%;
+}
+
+.overallHealthFormSex{
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+}
+
+.overallHealthFormSex input{
+  margin: 2%;
+}
+
+
 /* CALENDAR SECTION STYLING */
 
 .calendarMain{
@@ -171,21 +192,27 @@ h1{
   flex-direction: column;
 }
 
-.Calendar form input{
+.Calendar form input,
+.OverallHealth input{
   padding: 10px;
-  margin: 20px 0;
   border-radius: 5px;
   border: 1px solid lightgrey;
 }
 
-.Calendar h2{
+.Calendar form input{
+  margin: 20px 0;
+}
+
+.Calendar h2,
+.OverallHealth h2{
   font-size: 60px;
   padding-left: 3vw;
   margin: 0;
   letter-spacing: 5px;
 }
 
-.calendarMain button{
+.calendarMain button,
+.OverallHealth button{
   border: none;
   padding: 10px 20px;
   border-radius: 5px;

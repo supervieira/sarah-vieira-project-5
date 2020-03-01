@@ -16,8 +16,9 @@
 
 
 import React, { Component } from 'react';
+import firebase from '../firebase';
 
-class OverallHealthForm extends Component{
+class OverallHealthFormName extends Component{
     constructor(){
         super();
 
@@ -69,6 +70,20 @@ class OverallHealthForm extends Component{
     //     })
     // }
 
+    // handleInputName = (e) => {
+    //     e.preventDefault();
+
+    //     const dbOverallHealth = firebase.database().ref('overallHealth');
+
+    //     dbOverallHealth.update({name: this.props.name});
+
+    //     this.setState({
+    //         userInputName: ""
+    //     })
+    // }
+
+
+
     render(){
         // console.log(this.props)
         return(
@@ -101,4 +116,4 @@ class OverallHealthForm extends Component{
     }
 }
 
-export default OverallHealthForm;
+export default OverallHealthFormName;
