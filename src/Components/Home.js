@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Heart from '../assets/heart.png';
 import Chart from '../assets/chart.png';
 import Food from '../assets/food.png';
 import Poison from '../assets/poison.png';
 
-class Home extends Component{
-    render(){
+function Home(){
         return(
             <div className="Home">
                 <h1>Fetch</h1>
@@ -42,7 +41,6 @@ class Home extends Component{
                 </div>
             </div>
         );
-    }
 }
 
 export default Home;

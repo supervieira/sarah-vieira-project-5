@@ -133,7 +133,7 @@ class Calendar extends Component {
                     <h2>Calendar</h2>
                 </header>
 
-                <main class="calendarMain">
+                <main className="calendarMain wrapper">
                     <div className="calendarSymptoms calendarQuad">
                         <h3>Pet Symptoms</h3>
                         <ul>

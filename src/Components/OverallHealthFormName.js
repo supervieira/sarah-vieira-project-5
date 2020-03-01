@@ -73,7 +73,7 @@ class OverallHealthForm extends Component{
         // console.log(this.props)
         return(
             <form 
-                className="overallHealthForm"
+                className="overallHealthFormName wrapper"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputName)}
             >
                 <label htmlFor="petName">Name:</label>
