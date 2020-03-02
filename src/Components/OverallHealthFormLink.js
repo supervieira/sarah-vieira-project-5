@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class OverallHealthFormPhoto extends Component {
+class OverallHealthFormLink extends Component {
     constructor() {
         super();
 
@@ -44,4 +44,4 @@ class OverallHealthFormPhoto extends Component {
     }
 }
 
-export default OverallHealthFormPhoto;
+export default OverallHealthFormLink;

@@ -3,6 +3,7 @@ import './index.css'
 import firebase from './firebase';
 
 // import OverallHealth from './Components/OverallHealth';
+import Title from './Components/Title';
 import Calendar from './Components/Calendar';
 import Home from './Components/Home';
 
@@ -13,11 +14,6 @@ import OverallHealthFormBreed from './Components/OverallHealthFormBreed';
 import OverallHealthFormSex from './Components/OverallHealthFormSex';
 
 import PrintInput from './Components/PrintInput';
-
-// Can we create a separate js file that holds our image imports?
-import Marley from './assets/marley.jpeg';
-import Penny from './assets/penny.JPG';
-import Brooks from './assets/brooks.jpg';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +30,9 @@ class App extends Component {
       photo:'',
       age: '',
       breed: '',
-      sex: ''
+      sex: '',
+      imgFile: '',
+      imgSrc: null
     }
   }
 
@@ -76,9 +74,9 @@ class App extends Component {
       const photo = response.val();
 
       this.setState({
-        photo: photo,
+        imgSrc: photo,
       }, () => {
-        console.log(this.state.photo)
+        console.log(this.state.imgSrc)
       })
     })
 
@@ -177,14 +175,22 @@ class App extends Component {
     e.preventDefault();
 
     this.setState({
-      photo: userInput
+      imgFile: e.target.files[0],
+      imgSrc: URL.createObjectURL(e.target.files[0]),
     }, () => {
-      console.log(this.state.photo)
-
-      // Trying to push data to firebase on submit
       const dbPhoto = firebase.database().ref('overallHealth')
-      dbPhoto.update({photo: this.state.photo})
-    })
+      dbPhoto.update({photo: this.state.imgSrc})
+    });
+
+    URL.revokeObjectURL(e.target.files[0]); //to avoid memory issues
+
+    // this.setState({
+    //   photo: userInput
+    // }, () => {
+    //   console.log(this.state.photo)
+
+    //   // Trying to push data to firebase on submit
+    // })
   }
 
   submitUserInputAge = (e, userInput) => {
@@ -235,82 +241,51 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-
-        <div className="titleScreen">
-          <h1>Fetch</h1>
-
-          <div className="titleScreenCenter">
-            <h2>your pets</h2>
-
-            <div className="titleScreenPets">
-
-              <a className="titleScreenPetDiv" href="#home">
-                <div className="titleScreenPetImage">
-                  <img src={Marley} alt="" />
-                </div>
-                <p className="titleScreenPetText">Marley</p>
-              </a>
-
-              <a className="titleScreenPetDiv" href="#home">
-                <div className="titleScreenPetImage">
-                  <img src={Penny} alt="" />
-                </div>
-                <p className="titleScreenPetText">Penny</p>
-              </a>
-
-              <a className="titleScreenPetDiv" href="#home">
-                <div className="titleScreenPetImage">
-                  <img src={Brooks} alt="" />
-                </div>
-                <p className="titleScreenPetText">Brooks</p>
-              </a>
-
-            </div>
-
-            <p className="titleScreenManagePets">manage pets</p>
-
-          </div>
-
-        </div>
-
+        <Title
+          name={this.state.name}
+          imgSrc={this.state.imgSrc}
+        />
         <Home/>
 
         {/* <OverallHealth/> */}
 
         <div className="OverallHealth" id="overallHealth">
           <h2>Overall Health</h2>
+
+          <div className="overallHealthFlex wrapper">
+            <PrintInput
+              name = {this.state.name}
+              photo = {this.state.photo}
+              age = {this.state.age}
+              breed = {this.state.breed}
+              sex = {this.state.sex}
+              imgSrc = {this.state.imgSrc}
+            />
+
+            <div className="OverallHealthUpdate">
+              <h3>Update Information:</h3>
+              <OverallHealthFormName
+                functionFromParent = {this.submitUserInputName}
+              />
+              <OverallHealthFormPhoto
+                functionFromParent={this.submitUserInputPhoto}
+              />
+              <OverallHealthFormAge
+                functionFromParent={this.submitUserInputAge}
+              />
+              <OverallHealthFormBreed
+                functionFromParent={this.submitUserInputBreed}
+              />
+              <OverallHealthFormSex
+                functionFromParent={this.submitUserInputSex}
+              />
+            </div>  
+          </div>     
           
-          
-          <PrintInput
-            name = {this.state.name}
-            photo = {this.state.photo}
-            age = {this.state.age}
-            breed = {this.state.breed}
-            sex = {this.state.sex}
-          />
-
-          <div className="OverallHealthUpdate wrapper">
-            <OverallHealthFormName
-              functionFromParent = {this.submitUserInputName}
-            />
-
-            <OverallHealthFormPhoto
-              functionFromParent={this.submitUserInputPhoto}
-            />
-
-            <OverallHealthFormAge
-              functionFromParent={this.submitUserInputAge}
-            />
-
-            <OverallHealthFormBreed
-              functionFromParent={this.submitUserInputBreed}
-            />
-
-            <OverallHealthFormSex
-              functionFromParent={this.submitUserInputSex}
-            />
-
-            <a href="#home">Back</a>
+          <div class="wrapper">
+            <button className="back">
+              <a href="#home">Back</a>
+            </button>
           </div>
         </div>
 

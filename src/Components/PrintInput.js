@@ -3,14 +3,16 @@ import React from 'react';
 function PrintInput(props){
     return(
         // How to keep info printed on page after refresh?
-        <div className= "wrapper">
-            <p>Name: {props.name}</p>
+        <div className="printInput">
             <div className="overallHealthPhoto">
-                <img src= '../public/assets/penny.jpg' alt="Pet"/>
+                <img className= "profileImage" src={props.imgSrc} alt="Pet"/>
             </div>
-            <p>Age: {props.age}</p>
-            <p>Breed: {props.breed}</p>
-            <p>Sex: {props.sex}</p>
+            <div>
+                <p><span>Name: </span>{props.name}</p>
+                <p><span>Age: </span>{props.age}</p>
+                <p><span>Breed: </span>{props.breed}</p>
+                <p><span>Sex: </span>{props.sex}</p>
+            </div>
         </div>
     )
 }

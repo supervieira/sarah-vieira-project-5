@@ -200,8 +200,10 @@ class Calendar extends Component {
                             <button type="submit">update</button>
                         </form>
                     </div>
-
-                    <a href="#home">Back</a>
+                            
+                    <button className="back">
+                        <a href="#home">Back</a>
+                    </button>
                 </main>
             </div>
         );
