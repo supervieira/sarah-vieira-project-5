@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './index.css'
 import firebase from './firebase';
 
-// import OverallHealth from './Components/OverallHealth';
 import Title from './Components/Title';
 import Calendar from './Components/Calendar';
 import Home from './Components/Home';
@@ -247,10 +246,8 @@ class App extends Component {
         />
         <Home/>
 
-        {/* <OverallHealth/> */}
-
         <div className="OverallHealth" id="overallHealth">
-          <h2>Overall Health</h2>
+          <h2>Profile</h2>
 
           <div className="overallHealthFlex wrapper">
             <PrintInput

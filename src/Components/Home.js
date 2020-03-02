@@ -16,7 +16,7 @@ function Home(){
                             <div className="homeImageContainer">
                                 <img src={Heart} alt="" />
                             </div>
-                            <h2>Overall Health</h2>
+                            <h2>Profile</h2>
                         </a>
                     </div>
 

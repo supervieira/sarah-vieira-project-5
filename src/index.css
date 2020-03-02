@@ -53,11 +53,11 @@ h1,h2,h3{
   margin: 0 auto;
 }
 
-.titleScreen,
-.Home{
+.titleScreen{
   height: 100vh;
 }
 
+.Home,
 .OverallHealth,
 .Calendar{
   min-height: 100vh;
@@ -211,8 +211,11 @@ a{
 
 .overallHealthFlex {
   display: flex;
-  justify-content: space-between;
   margin-top: 3%;
+}
+
+.OverallHealthUpdate{
+  margin-left: 10%;
 }
 
 
