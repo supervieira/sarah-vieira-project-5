@@ -19,7 +19,7 @@ class OverallHealthFormSex extends Component {
     render() {
         return (
             <form
-                className="overallHealthFormSex wrapper"
+                className="overallHealthFormSex"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputSex)}
             >
                 <label htmlFor="petSexMale">Intact male</label>

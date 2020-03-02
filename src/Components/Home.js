@@ -7,22 +7,26 @@ import Poison from '../assets/poison.png';
 
 function Home(){
         return(
-            <div className="Home">
+            <div className="Home" id="home">
                 <h1>Fetch</h1>
 
                 <div className="homeGrid">
                     <div className="homeQuadrant">
-                        <div className="homeImageContainer">
-                            <img src={Heart} alt="" />
-                        </div>
-                        <h2>Overall Health</h2>
+                        <a href="#overallHealth">
+                            <div className="homeImageContainer">
+                                <img src={Heart} alt="" />
+                            </div>
+                            <h2>Overall Health</h2>
+                        </a>
                     </div>
 
                     <div className="homeQuadrant">
-                        <div className="homeImageContainer">
-                            <img src={Chart} alt="" />
-                        </div>
-                        <h2>Calendar</h2>
+                        <a href="#chart">
+                            <div className="homeImageContainer">
+                                <img src={Chart} alt="" />
+                            </div>
+                            <h2>Chart</h2>
+                        </a>
                     </div>
                     
                     <div className="homeQuadrant">

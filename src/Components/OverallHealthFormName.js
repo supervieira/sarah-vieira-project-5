@@ -16,7 +16,7 @@
 
 
 import React, { Component } from 'react';
-import firebase from '../firebase';
+// import firebase from '../firebase';
 
 class OverallHealthFormName extends Component{
     constructor(){
@@ -88,7 +88,7 @@ class OverallHealthFormName extends Component{
         // console.log(this.props)
         return(
             <form 
-                className="overallHealthFormName wrapper"
+                className="overallHealthFormName"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputName)}
             >
                 <label htmlFor="petName">Name:</label>

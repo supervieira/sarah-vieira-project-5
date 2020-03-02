@@ -19,7 +19,7 @@ class OverallHealthFormBreed extends Component {
     render() {
         return (
             <form
-                className="overallHealthFormBreed wrapper"
+                className="overallHealthFormBreed"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputBreed)}
             >
                 <label htmlFor="petBreed">Breed:</label>

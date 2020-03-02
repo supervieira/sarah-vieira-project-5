@@ -18,7 +18,11 @@ import PrintInput from './Components/PrintInput';
 import Marley from './assets/marley.jpeg';
 import Penny from './assets/penny.JPG';
 import Brooks from './assets/brooks.jpg';
-import OverallHealthForm from './Components/OverallHealthFormName';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas, faTrashAlt)
 
 
 class App extends Component {
@@ -34,7 +38,7 @@ class App extends Component {
     }
   }
 
-  // componentDidMount(){
+  componentDidMount(){
     // Trying to push data to firebase on submit
     // const dbName = firebase.database().ref('overallHealth')
     // dbName.update({ name: this.state.name })
@@ -42,45 +46,9 @@ class App extends Component {
 
     // ----------------------------
 
-    // // Update firebase with userInput
+    // Update firebase with userInput
     // const dbOverallHealth = firebase.database().ref('overallHealth')
     // dbOverallHealth.update({name: this.state.name})
-
-    // // Save firebase data into state:
-    // const dbName = firebase.database().ref('overallHealth/name')
-
-    // dbName.on('value', (response) => {
-    //   console.log(response.val())
-
-    //   const name = response.val();
-
-    //   this.setState({
-    //     name: name,
-    //   }, () => {
-    //     console.log(this.state.name)
-    //   })
-    // })
-
-    // Also did not work...
-  // }
-
-  // ---------------------------------------------------------
-  // These functions save user input to App.js state and update firebase upon submit:
-
-  // When name is updated by user...
-  submitUserInputName = (e, userInput) => {
-    // Prevent default
-    e.preventDefault();
-
-    this.setState({
-      name: userInput
-    }, () => {
-      console.log(this.state.name)
-    })
-
-    // Update firebase with userInput
-    const dbOverallHealth = firebase.database().ref('overallHealth')
-    dbOverallHealth.update({name: userInput})
 
     // Save firebase data into state:
     const dbName = firebase.database().ref('overallHealth/name')
@@ -96,6 +64,100 @@ class App extends Component {
         console.log(this.state.name)
       })
     })
+
+    // THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    const dbPhoto = firebase.database().ref('overallHealth/photo')
+
+    dbPhoto.on('value', (response) => {
+      // Recall: response = data received from Firebase at written reference point
+      console.log(response.val())
+
+      const photo = response.val();
+
+      this.setState({
+        photo: photo,
+      }, () => {
+        console.log(this.state.photo)
+      })
+    })
+
+    const dbAge = firebase.database().ref('overallHealth/age')
+
+    dbAge.on('value', (response) => {
+      console.log(response.val())
+
+      const age = response.val();
+
+      this.setState({
+        age: age,
+      }, () => {
+        console.log(this.state.age)
+      })
+    })
+
+    const dbBreed = firebase.database().ref('overallHealth/breed')
+
+    dbBreed.on('value', (response) => {
+      console.log(response.val())
+
+      const breed = response.val();
+
+      this.setState({
+        breed: breed,
+      }, () => {
+        console.log(this.state.breed)
+      })
+    })
+
+    const dbSex = firebase.database().ref('overallHealth/sex')
+
+    dbSex.on('value', (response) => {
+      console.log(response.val())
+
+      const sex = response.val();
+
+      this.setState({
+        sex: sex,
+      }, () => {
+        console.log(this.state.sex)
+      })
+    })
+  }
+
+  // ---------------------------------------------------------
+  // These functions save user input to App.js state and update firebase upon submit:
+
+  // When name is updated by user...
+  submitUserInputName = (e, userInput) => {
+    // Prevent default
+    e.preventDefault();
+
+    this.setState({
+      name: userInput
+    }, () => {
+      console.log(this.state.name)
+
+      const dbOverallHealth = firebase.database().ref('overallHealth')
+      dbOverallHealth.update({name: userInput})
+    })
+
+    // Update firebase with userInput
+
+    // Save firebase data into state:
+    // const dbName = firebase.database().ref('overallHealth/name')
+
+    // dbName.on('value', (response) => {
+    //   console.log(response.val())
+
+    //   const name = response.val();
+
+    //   this.setState({
+    //     name: name,
+    //   }, () => {
+    //     console.log(this.state.name)
+    //   })
+    // })
 
     // Problem: DOES NOT SAVE DATA ON PAGE AFTER REFRESH :(
 
@@ -181,37 +243,41 @@ class App extends Component {
             <h2>your pets</h2>
 
             <div className="titleScreenPets">
-              <div className="titleScreenPetDiv">
+
+              <a className="titleScreenPetDiv" href="#home">
                 <div className="titleScreenPetImage">
                   <img src={Marley} alt="" />
                 </div>
                 <p className="titleScreenPetText">Marley</p>
-              </div>
+              </a>
 
-              <div className="titleScreenPetDiv">
+              <a className="titleScreenPetDiv" href="#home">
                 <div className="titleScreenPetImage">
                   <img src={Penny} alt="" />
                 </div>
                 <p className="titleScreenPetText">Penny</p>
-              </div>
+              </a>
 
-              <div className="titleScreenPetDiv">
+              <a className="titleScreenPetDiv" href="#home">
                 <div className="titleScreenPetImage">
                   <img src={Brooks} alt="" />
                 </div>
                 <p className="titleScreenPetText">Brooks</p>
-              </div>
+              </a>
+
             </div>
 
             <p className="titleScreenManagePets">manage pets</p>
+
           </div>
+
         </div>
 
         <Home/>
 
         {/* <OverallHealth/> */}
 
-        <div className="OverallHealth">
+        <div className="OverallHealth" id="overallHealth">
           <h2>Overall Health</h2>
           
           
@@ -223,7 +289,7 @@ class App extends Component {
             sex = {this.state.sex}
           />
 
-          <div className="OverallHealthUpdate">
+          <div className="OverallHealthUpdate wrapper">
             <OverallHealthFormName
               functionFromParent = {this.submitUserInputName}
             />
@@ -243,9 +309,10 @@ class App extends Component {
             <OverallHealthFormSex
               functionFromParent={this.submitUserInputSex}
             />
+
+            <a href="#home">Back</a>
           </div>
         </div>
-
 
         <Calendar/>
       </div>

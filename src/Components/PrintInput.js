@@ -6,7 +6,7 @@ function PrintInput(props){
         <div className= "wrapper">
             <p>Name: {props.name}</p>
             <div className="overallHealthPhoto">
-                <img src="{props.photo}" alt="Photo of pet"/>
+                <img src={props.photo} alt="Pet"/>
             </div>
             <p>Age: {props.age}</p>
             <p>Breed: {props.breed}</p>

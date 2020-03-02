@@ -19,7 +19,7 @@ class OverallHealthFormAge extends Component {
     render() {
         return (
             <form
-                className="overallHealthFormAge wrapper"
+                className="overallHealthFormAge"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputAge)}
             >
                 <label htmlFor="petAge">Age:</label>

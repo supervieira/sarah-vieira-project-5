@@ -19,7 +19,7 @@ class OverallHealthFormPhoto extends Component {
     render() {
         return (
             <form
-                className="overallHealthFormPhoto wrapper"
+                className="overallHealthFormPhoto"
                 onSubmit={(e) => this.props.functionFromParent(e, this.state.userInputPhoto)}
             >
                 <label htmlFor="petPhoto">Photo:</label>

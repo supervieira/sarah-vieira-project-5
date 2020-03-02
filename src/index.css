@@ -38,6 +38,7 @@ body,
 html{
   margin: 0 auto;
   padding: 0;
+  /* scroll-behavior: smooth; */
 }
 
 .wrapper{
@@ -141,6 +142,11 @@ h1{
   padding: 3%;
   text-align: center;
   margin: 0 10vw;
+}
+
+a{
+  color: rgb(88, 85, 85);
+  text-decoration: none;
 }
 
 /* OVERALL HEALTH SECTION STYLING */

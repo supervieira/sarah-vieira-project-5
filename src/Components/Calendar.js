@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
 // import moment from 'moment'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Calendar extends Component {
     constructor() {
@@ -125,12 +126,12 @@ class Calendar extends Component {
     
     render() {
         return (
-            <div className="Calendar">
+            <div className="Calendar" id="chart">
                 <header>
                     <div>
                         <img src="" alt="" />
                     </div>
-                    <h2>Calendar</h2>
+                    <h2>Chart</h2>
                 </header>
 
                 <main className="calendarMain wrapper">
@@ -143,7 +144,9 @@ class Calendar extends Component {
                                         <li key={symptom.key}>
                                             <div className="calendarListFlex">
                                                 <p>{symptom.name}</p>
-                                                <button onClick={() => {this.removeSymptom(symptom.key) }}>Remove</button>
+                                                <button onClick={() => {this.removeSymptom(symptom.key) }}>
+                                                    <FontAwesomeIcon icon="trash-alt"/>
+                                                </button>
                                             </div>
                                         </li>
                                     )
@@ -175,7 +178,9 @@ class Calendar extends Component {
                                         <li key={prescription.key}>
                                             <div className="calendarListFlex">
                                                 <p>{prescription.name}</p>
-                                                <button onClick={() => { this.removePrescription(prescription.key) }}>Remove</button>
+                                                <button onClick={() => { this.removePrescription(prescription.key) }}>
+                                                    <FontAwesomeIcon icon="trash-alt" />
+                                                </button>
                                             </div>
                                         </li>
                                     )
@@ -195,6 +200,8 @@ class Calendar extends Component {
                             <button type="submit">update</button>
                         </form>
                     </div>
+
+                    <a href="#home">Back</a>
                 </main>
             </div>
         );
