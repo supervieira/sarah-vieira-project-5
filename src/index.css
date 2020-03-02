@@ -31,7 +31,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 img{
   width: 100%;
   height: auto;
-  display: display;
+  display: block;
 }
 
 body,
@@ -39,6 +39,7 @@ html{
   margin: 0 auto;
   padding: 0;
   /* scroll-behavior: smooth; */
+  /* overflow-y: hidden; */
 }
 
 .wrapper{

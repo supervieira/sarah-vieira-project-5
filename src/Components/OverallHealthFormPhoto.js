@@ -11,6 +11,8 @@ class OverallHealthFormPhoto extends Component {
 
 
     getUserInputPhoto = (e) => {
+        
+        
         this.setState({
             userInputPhoto: e.target.value
         })
