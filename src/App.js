@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import './index.css'
 import firebase from './firebase';
+import { storage } from './firebase';
 
 import Title from './Components/Title';
-import Calendar from './Components/Calendar';
 import Home from './Components/Home';
-
-import OverallHealthFormName from './Components/OverallHealthFormName';
-import OverallHealthFormPhoto from './Components/OverallHealthFormPhoto';
-import OverallHealthFormAge from './Components/OverallHealthFormAge';
-import OverallHealthFormBreed from './Components/OverallHealthFormBreed';
-import OverallHealthFormSex from './Components/OverallHealthFormSex';
-
+import ProfileForm from './Components/ProfileForm';
 import PrintInput from './Components/PrintInput';
+import Calendar from './Components/Calendar';
+import Toxicity from './Components/Toxicity';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +21,7 @@ class App extends Component {
     super();
 
     this.state = {
+      pets: [],
       name: '',
       photo:'',
       age: '',
@@ -35,207 +32,125 @@ class App extends Component {
     }
   }
 
+  // Obtaining data from Firebase
   componentDidMount(){
-    // Trying to push data to firebase on submit
-    // const dbName = firebase.database().ref('overallHealth')
-    // dbName.update({ name: this.state.name })
-    // Did not work...
-
-    // ----------------------------
-
-    // Update firebase with userInput
-    // const dbOverallHealth = firebase.database().ref('overallHealth')
-    // dbOverallHealth.update({name: this.state.name})
-
-    // Save firebase data into state:
     const dbName = firebase.database().ref('overallHealth/name')
 
     dbName.on('value', (response) => {
-      console.log(response.val())
-
       const name = response.val();
 
       this.setState({
         name: name,
-      }, () => {
-        console.log(this.state.name)
       })
     })
-
-    // THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     const dbPhoto = firebase.database().ref('overallHealth/photo')
 
     dbPhoto.on('value', (response) => {
-      // Recall: response = data received from Firebase at written reference point
-      console.log(response.val())
-
       const photo = response.val();
 
       this.setState({
         imgSrc: photo,
-      }, () => {
-        console.log(this.state.imgSrc)
       })
     })
 
     const dbAge = firebase.database().ref('overallHealth/age')
 
     dbAge.on('value', (response) => {
-      console.log(response.val())
-
       const age = response.val();
 
       this.setState({
         age: age,
-      }, () => {
-        console.log(this.state.age)
       })
     })
 
     const dbBreed = firebase.database().ref('overallHealth/breed')
 
     dbBreed.on('value', (response) => {
-      console.log(response.val())
-
       const breed = response.val();
 
       this.setState({
         breed: breed,
-      }, () => {
-        console.log(this.state.breed)
       })
     })
 
     const dbSex = firebase.database().ref('overallHealth/sex')
 
     dbSex.on('value', (response) => {
-      console.log(response.val())
-
       const sex = response.val();
 
       this.setState({
         sex: sex,
-      }, () => {
-        console.log(this.state.sex)
       })
     })
   }
 
-  // ---------------------------------------------------------
-  // These functions save user input to App.js state and update firebase upon submit:
-
-  // When name is updated by user...
-  submitUserInputName = (e, userInput) => {
-    // Prevent default
+  // onSubmit event handler for Profile form submit
+  submitUserInput = (e, userInput) => {
     e.preventDefault();
 
     this.setState({
-      name: userInput
+      name: userInput.userInputName,
+      age: userInput.userInputAge,
+      breed: userInput.userInputBreed,
+      sex: userInput.userInputSex,
+      photo: userInput.photo,
+      imgFile: userInput.imgFile,
+      imgSrc: userInput.imgSrc
     }, () => {
-      console.log(this.state.name)
+      console.log(this.state.photo)
+      console.log(this.state.imgSrc)
+      console.log(this.state.imgFile)
 
       const dbOverallHealth = firebase.database().ref('overallHealth')
-      dbOverallHealth.update({name: userInput})
-    })
 
-    // Update firebase with userInput
+      dbOverallHealth.update({ name: this.state.name })
+      dbOverallHealth.update({ photo: this.state.imgSrc })
+      dbOverallHealth.update({ age: this.state.age })
+      dbOverallHealth.update({ breed: this.state.breed })
+      dbOverallHealth.update({ sex: this.state.sex })
 
-    // Save firebase data into state:
-    // const dbName = firebase.database().ref('overallHealth/name')
 
-    // dbName.on('value', (response) => {
-    //   console.log(response.val())
 
-    //   const name = response.val();
 
-    //   this.setState({
-    //     name: name,
-    //   }, () => {
-    //     console.log(this.state.name)
-    //   })
-    // })
+      // Working with Firebase Cloud Storage
+      // const storage = firebase.storage();
+      // const storageRef = storage.ref();
 
-    // Problem: DOES NOT SAVE DATA ON PAGE AFTER REFRESH :(
+      // let file = this.state.imgSrc
+      // storageRef.put(file).then(function (snapshot) {
+      //   console.log('Uploaded a blob or file!');
+      // });
 
-    // Save firebase data into state
-    // this.setState({
-    //   name: userInput
-    // }, () => {
-    //   console.log(this.state.name)
-    // })
+      // let message = 'This is my message.';
+      // ref.putString(message).then(function (snapshot) {
+      //   console.log('Uploaded a raw string!');
+      // });
 
-    // const dbOverallHealth = firebase.database().ref('overallHealth')
-    // dbOverallHealth.update({ name: userInput })
-    
-  }
+      // Messing around with Firebase storage
+      // const { image } = this.state;
+      // const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
-  submitUserInputPhoto = (e, userInput) => {
-    e.preventDefault();
+      // uploadTask.on('state_changed',
+      //   (snapshot) => {
+      //     // Progress function
+      //   },
+      //   (error) => {
+      //     // Error function
+      //     console.log('error')
+      //   },
+      //   () => {
+      //     // Complete function
+      //     // Grabbing image from firebase storage
+      //     storage.ref('image').child(image.name).getDownloadURL().then(url => {
+      //       console.log(url)
+      //     })
 
-    this.setState({
-      imgFile: e.target.files[0],
-      imgSrc: URL.createObjectURL(e.target.files[0]),
-    }, () => {
-      const dbPhoto = firebase.database().ref('overallHealth')
-      dbPhoto.update({photo: this.state.imgSrc})
+      //   });
     });
 
-    URL.revokeObjectURL(e.target.files[0]); //to avoid memory issues
-
-    // this.setState({
-    //   photo: userInput
-    // }, () => {
-    //   console.log(this.state.photo)
-
-    //   // Trying to push data to firebase on submit
-    // })
+    // URL.revokeObjectURL(e.target.files[0]); //to avoid memory issues
   }
-
-  submitUserInputAge = (e, userInput) => {
-    e.preventDefault();
-
-    this.setState({
-      age: userInput
-    }, () => {
-        console.log(this.state.age)
-
-        // Trying to push data to firebase on submit
-        const dbAge = firebase.database().ref('overallHealth')
-        dbAge.update({age: this.state.age})
-    })
-  }
-
-  submitUserInputBreed = (e, userInput) => {
-    e.preventDefault();
-
-    this.setState({
-      breed: userInput
-    }, () => {
-        console.log(this.state.breed)
-
-        // Trying to push data to firebase on submit
-        const dbBreed = firebase.database().ref('overallHealth')
-        dbBreed.update({breed: this.state.breed})
-    })
-  }
-
-  submitUserInputSex = (e, userInput) => {
-    e.preventDefault();
-
-    this.setState({
-      sex: userInput
-    }, () => {
-      console.log(this.state.sex)
-
-      // Trying to push data to firebase on submit
-      const dbSex = firebase.database().ref('overallHealth')
-      dbSex.update({sex: this.state.sex})
-    })
-  }
-
-  // ---------------------------------------------------------
-
 
   render(){
     return(
@@ -259,27 +174,12 @@ class App extends Component {
               imgSrc = {this.state.imgSrc}
             />
 
-            <div className="OverallHealthUpdate">
-              <h3>Update Information:</h3>
-              <OverallHealthFormName
-                functionFromParent = {this.submitUserInputName}
-              />
-              <OverallHealthFormPhoto
-                functionFromParent={this.submitUserInputPhoto}
-              />
-              <OverallHealthFormAge
-                functionFromParent={this.submitUserInputAge}
-              />
-              <OverallHealthFormBreed
-                functionFromParent={this.submitUserInputBreed}
-              />
-              <OverallHealthFormSex
-                functionFromParent={this.submitUserInputSex}
-              />
-            </div>  
+            <ProfileForm
+              functionFromParent={this.submitUserInput}
+            />
           </div>     
           
-          <div class="wrapper">
+          <div className="wrapper">
             <button className="back">
               <a href="#home">Back</a>
             </button>
@@ -287,6 +187,7 @@ class App extends Component {
         </div>
 
         <Calendar/>
+        <Toxicity/>
       </div>
     );
   }

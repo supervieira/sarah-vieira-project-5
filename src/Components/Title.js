@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Marley from '../assets/marley.jpeg';
+// import Marley from '../assets/marley.jpeg';
 import Penny from '../assets/penny.JPG';
 import Brooks from '../assets/brooks.jpg';
 
@@ -12,30 +12,36 @@ class Title extends Component{
                 <div className="titleScreenCenter">
                     <h2>your pets</h2>
 
-                    <div className="titleScreenPets">
+                    <ul className="titleScreenPets">
 
-                        <a className="titleScreenPetDiv" href="#home">
-                            <div className="titleScreenPetImage">
-                                <img className="profileImage" src={this.props.imgSrc} alt="Pet" />
-                            </div>
-                            <p className="titleScreenPetText">{this.props.name}</p>
-                        </a>
+                        <li>
+                            <a className="titleScreenPetDiv" href="#home">
+                                <div className="titleScreenPetImage">
+                                    <img className="profileImage" src={this.props.imgSrc} alt="Pet" />
+                                </div>
+                                <p className="titleScreenPetText">{this.props.name}</p>
+                            </a>
+                        </li>
 
-                        <a className="titleScreenPetDiv" href="#home">
-                            <div className="titleScreenPetImage">
-                                <img src={Penny} alt="" />
-                            </div>
-                            <p className="titleScreenPetText">Penny</p>
-                        </a>
+                        <li>
+                            <a className="titleScreenPetDiv" href="#home">
+                                <div className="titleScreenPetImage">
+                                    <img src={Penny} alt="" />
+                                </div>
+                                <p className="titleScreenPetText">Penny</p>
+                            </a>
+                        </li>
 
-                        <a className="titleScreenPetDiv" href="#home">
-                            <div className="titleScreenPetImage">
-                                <img src={Brooks} alt="" />
-                            </div>
-                            <p className="titleScreenPetText">Brooks</p>
-                        </a>
+                        <li>
+                            <a className="titleScreenPetDiv" href="#home">
+                                <div className="titleScreenPetImage">
+                                    <img src={Brooks} alt="" />
+                                </div>
+                                <p className="titleScreenPetText">Brooks</p>
+                            </a>
+                        </li>
 
-                    </div>
+                    </ul>
 
                     <p className="titleScreenManagePets">manage pets</p>
 

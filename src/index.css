@@ -59,14 +59,17 @@ h1,h2,h3{
 
 .Home,
 .OverallHealth,
-.Calendar{
+.Calendar,
+.Toxicity{
   min-height: 100vh;
+  padding: 20px 0;
 }
 
 .titleScreen,
 .Home,
 .OverallHealth,
-.Calendar{
+.Calendar,
+.Toxicity{
   line-height: 1.6;
   letter-spacing: 2px;
   color: rgb(88, 85, 85);
@@ -79,11 +82,7 @@ h1,h2,h3{
 
 .back{
   width: 100px;
-  margin-top: 10%;
-}
-
-span{
-  font-weight: bold;
+  margin-top: 3%;
 }
 
 /* TITLE PAGE STYLING */
@@ -93,6 +92,10 @@ h1{
   padding-left: 3vw;
   letter-spacing: 5px;
   margin: 0;
+}
+
+.titleScreen li{
+  list-style: none;
 }
 
 .titleScreen h2{
@@ -176,12 +179,33 @@ a{
 
 /* OVERALL HEALTH SECTION STYLING */
 
+span{
+  font-weight: bold;
+  color: white;
+}
+
+.name{
+  font-size: 35px;
+  font-weight: bold;
+  margin: 12px 0;
+  color: white;
+  text-shadow: -1px -1px 0 lightgray, 1px -1px 0 lightgray, -1px 1px 0 lightgray, 1px 1px 0 lightgray;
+}
+
 .printInput{
   font-size: 20px;
+  background: lightsteelblue;
+  padding: 25px;
+  min-width: 400;
+  border-radius: 10px;
 }
 
 .OverallHealth input{
-  margin: 10px;
+  width: 100%;
+}
+
+.OverallHealth input{
+  margin: 10px 0;
 }
 
 .overallHealthFormPhoto button{
@@ -190,7 +214,6 @@ a{
 
 .overallHealthFormSex{
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
 }
 
@@ -199,8 +222,8 @@ a{
 }
 
 .overallHealthPhoto{
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   outline: 0.5px solid lightgrey;
 }
 
@@ -215,7 +238,13 @@ a{
 }
 
 .OverallHealthUpdate{
-  margin-left: 10%;
+  margin-left: 7vw;
+  width: 50vw;
+}
+
+.profileUpdate{
+  margin-top: 10%;
+  width: 100%;
 }
 
 
@@ -226,6 +255,7 @@ a{
 .calendarMain{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
 }
 
 .calendarQuad{
@@ -233,10 +263,17 @@ a{
   padding: 30px;
   margin-top: 5%;
   border-radius: 10px;
+  /* min-width: 350px; */
 }
 
-.calendarSymptoms{
-  margin-right: 10%;
+.chartHeaderFlex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartHeaderFlex div{
+  width: 50px;
 }
 
 .calendarQuad h3{
@@ -261,15 +298,15 @@ a{
 }
 
 .Calendar h2,
-.OverallHealth h2{
+.OverallHealth h2,
+.Toxicity h2{
   font-size: 60px;
   padding-left: 3vw;
   margin: 0;
   letter-spacing: 5px;
 }
 
-.calendarMain button,
-.OverallHealth button{
+button{
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -278,8 +315,18 @@ a{
   font-size: 15px;
 }
 
+
+.trashButton{
+  background: none;
+}
+
+.trashIcon{
+  font-size: 20px;
+}
+
 .calendarListFlex{
   display: flex;
+  font-size: 20px;
   justify-content: space-between;
 }
 
@@ -287,13 +334,110 @@ a{
   margin: 2% 0;
 }
 
+/* Toxicity */
+
+.petPoisonImg{
+  margin-top: 3%;
+}
+
+
+/* Pseudoelements */
+
+
 .Calendar form input:focus,
 button:focus{
   border: 1px solid grey;
 }
 
-button:hover{
+button:hover,
+button:hover a{
   background: grey;
   color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Queries */
+
+@media(max-width:1050px){
+  /* Home */
+  .homeQuadrant{
+    margin: 0 5vw;
+  }
+}
+
+@media(max-width:900px){
+  
+  /* Profile */
+
+  .printInput{
+    display: flex;
+  }
+
+  .overallHealthPhoto{
+    margin-right: 5%;
+  }
+
+  .overallHealthFlex{
+    display: block;
+  }
+
+  .OverallHealthUpdate {
+    width: 100%;
+    margin: 5% 0;
+  }
+
+  .profileUpdate{
+    margin: 4% 0;
+  }
+
+  /* Chart section */
+  .overallHealth,
+  .Calendar{
+    margin-bottom: 5%;
+  }
+  
+  .calendarMain{
+    display: block;
+  }
+
+  .back{
+    width: 100%;
+  }
+}
+
+@media(max-width:800px){
+  /* Home */
+  .homeQuadrant{
+    width: 200px;
+  }
+
+  .homeGrid{
+    margin-top: 75px;
+  }
+}
+
+@media(max-width: 550px){
+  .homeQuadrant{
+    width: 150px;
+  }
+
+  .printInput{
+    flex-direction: column;
+  }
+
+  .overallHealthPhoto{
+    margin: 0;
+    width: 100%;
+  }
 }
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
-// import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Diagnosis from '../assets/diagnosis.png';
+import Prescription from '../assets/prescription.png';
+
 
 class Calendar extends Component {
     constructor() {
@@ -127,16 +129,16 @@ class Calendar extends Component {
     render() {
         return (
             <div className="Calendar" id="chart">
-                <header>
-                    <div>
-                        <img src="" alt="" />
-                    </div>
+                <div>
                     <h2>Chart</h2>
-                </header>
+                </div>
 
-                <main className="calendarMain wrapper">
+                <div className="calendarMain wrapper">
                     <div className="calendarSymptoms calendarQuad">
-                        <h3>Pet Symptoms</h3>
+                        <div className="chartHeaderFlex">
+                            <h3>Diagnostics</h3>
+                            <div><img src={Diagnosis} alt="Veterinary stethoscope"/></div>
+                        </div>
                         <ul>
                             {
                                 this.state.petSymptoms.map((symptom) => {
@@ -144,8 +146,8 @@ class Calendar extends Component {
                                         <li key={symptom.key}>
                                             <div className="calendarListFlex">
                                                 <p>{symptom.name}</p>
-                                                <button onClick={() => {this.removeSymptom(symptom.key) }}>
-                                                    <FontAwesomeIcon icon="trash-alt"/>
+                                                <button className="trashButton" onClick={() => {this.removeSymptom(symptom.key) }}>
+                                                    <FontAwesomeIcon className="trashIcon" icon="trash-alt"/>
                                                 </button>
                                             </div>
                                         </li>
@@ -155,13 +157,13 @@ class Calendar extends Component {
                         </ul>
 
                         <form action="submit" onSubmit={this.handleSymptomFormSubmit}>
-                            <label htmlFor="symptomInput" className="visuallyHidden">Add symptoms</label>
+                            <label htmlFor="symptomInput" className="visuallyHidden">Add diagnosis</label>
                             <input
                                 type="text"
                                 id="symptomInput"
                                 onChange={this.handleChangeSymptom}
                                 value={this.state.userInputSymptom}
-                                placeholder="Add symptom"
+                                placeholder="Add diagnosis"
                             />
                             <button type="submit">update</button>
                         </form>
@@ -170,7 +172,10 @@ class Calendar extends Component {
                     {/* ----------------------------------------------------------------------------- */}
                     
                     <div className="calendarRx calendarQuad">
-                        <h3>Prescriptions</h3>
+                        <div className="chartHeaderFlex">
+                            <h3>Prescriptions</h3>
+                            <div><img src={Prescription} alt="Prescription pills" /></div>
+                        </div>
                         <ul>
                             {
                                 this.state.petRx.map((prescription) => {
@@ -178,8 +183,8 @@ class Calendar extends Component {
                                         <li key={prescription.key}>
                                             <div className="calendarListFlex">
                                                 <p>{prescription.name}</p>
-                                                <button onClick={() => { this.removePrescription(prescription.key) }}>
-                                                    <FontAwesomeIcon icon="trash-alt" />
+                                                <button className="trashButton" onClick={() => { this.removePrescription(prescription.key) }}>
+                                                    <FontAwesomeIcon className="trashIcon" icon="trash-alt" />
                                                 </button>
                                             </div>
                                         </li>
@@ -189,13 +194,13 @@ class Calendar extends Component {
                         </ul>
 
                         <form action="submit" onSubmit={this.handleRxFormSubmit}>
-                            <label htmlFor="rxInput" className="visuallyHidden">Add prescriptions</label>
+                            <label htmlFor="rxInput" className="visuallyHidden">Add prescription</label>
                             <input
                                 type="text"
                                 id="rxInput"
                                 onChange={this.handleChangeRx}
                                 value={this.state.userInputRx}
-                                placeholder="Add prescriptions"
+                                placeholder="Add prescription"
                             />
                             <button type="submit">update</button>
                         </form>
@@ -204,7 +209,7 @@ class Calendar extends Component {
                     <button className="back">
                         <a href="#home">Back</a>
                     </button>
-                </main>
+                </div>
             </div>
         );
     }

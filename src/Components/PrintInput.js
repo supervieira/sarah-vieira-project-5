@@ -8,7 +8,7 @@ function PrintInput(props){
                 <img className= "profileImage" src={props.imgSrc} alt="Pet"/>
             </div>
             <div>
-                <p><span>Name: </span>{props.name}</p>
+                <p className="name">{props.name}</p>
                 <p><span>Age: </span>{props.age}</p>
                 <p><span>Breed: </span>{props.breed}</p>
                 <p><span>Sex: </span>{props.sex}</p>

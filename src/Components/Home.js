@@ -37,10 +37,12 @@ function Home(){
                     </div>
 
                     <div className="homeQuadrant">
-                        <div className="homeImageContainer">
-                            <img src={Poison} alt="" />
-                        </div>
-                        <h2>Toxicity</h2>
+                        <a href="#toxicity">
+                            <div className="homeImageContainer">
+                                <img src={Poison} alt="" />
+                            </div>
+                            <h2>Toxicity</h2>
+                        </a>
                     </div>
                 </div>
             </div>
