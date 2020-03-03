@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
-import {storage} from '../firebase';
+// import {storage} from '../firebase';
+// import Cat from '../assets/cat.png';
+// import Dog from '../assets/dog.png';
 
 class ProfileForm extends Component{
     constructor(){
         super();
 
         this.state = {
-            userInputPhoto: '',
             userInputName: '',
             userInputAge: '',
             userInputBreed: '',
             userInputSex: '',
+            userInputSpecies: '',
+            userInputPhoto: '',
             imgFile: '',
             imgSrc: null,
-
-            // Firebase storage tutorial
-            // image: null,
-            // url: ''
         }
-
-        // this.handleChange = this
-        //     .handleChange
-        //     .bind(this);
-
-        // this.handleUpload = this
-        //     .handleUpload
-        //     .bind(this);
     }
 
-    // Name
+    // Name onChange event listener
     getUserInputName = (e) => {
         console.log(e.target.value)
 
@@ -37,12 +28,13 @@ class ProfileForm extends Component{
         }, () => {
             console.log(this.state.userInputName)
         })
-    }
 
-    // Photo
+    }
+    
+    // Photo onChange event listener
     getUserInputPhoto = (e) => {
         console.log(e.target.value)
-
+        
         this.setState({
             userInputPhoto: e.target.value,
             imgFile: e.target.files[0],
@@ -53,22 +45,9 @@ class ProfileForm extends Component{
             console.log(this.state.imgSrc)
         })
     }
+    
 
-    // Using Firebase cloud storage
-    // handleChange = (e) => {
-    //     if(e.target.files[0]){
-    //         const image = e.target.files[0]
-    //         this.setState(() => ({image}));
-            
-    //         this.setState({
-    //             userInputPhoto: e.target.value,
-    //             imgFile: e.target.files[0],
-    //             imgSrc: URL.createObjectURL(e.target.files[0])
-    //         });
-    //     }
-    // }
-
-    // Age
+    // Age onChange event listener
     getUserInputAge = (e) => {
         console.log(e.target.value)
         
@@ -79,7 +58,7 @@ class ProfileForm extends Component{
         })
     }
 
-    // Breed
+    // Breed onChange event listener
     getUserInputBreed = (e) => {
         console.log(e.target.value)
 
@@ -90,48 +69,35 @@ class ProfileForm extends Component{
         })
     }
 
-    // Sex
+    // Sex onChange event listener
     getUserInputSex = (e) => {
         this.setState({
             userInputSex: e.target.value
         })
     }
 
+    // Species onChange event listener
+    getUserInputSpecies = (e) => {
+        this.setState({
+            userInputSpecies: e.target.value
+        })
+    }
+
+    // This function will run "submitUserInput" function from parent as well as empty our local state so that our form empties after submit
     handleFormSubmit = (e) => {
         this.props.functionFromParent(e, this.state)
+
         this.setState({
             userInputPhoto: '',
             userInputName: '',
             userInputAge: '',
             userInputBreed: '',
             userInputSex: '',
+            userInputSpecies: '',
             imgFile: '',
             imgSrc: null
         })
     }
-
-    // handleUpload = (e) => {
-    //     // Messing around with Firebase storage
-    //     const { image } = this.state;
-    //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-
-    //     uploadTask.on('state_changed',
-    //         (snapshot) => {
-    //             // Progress function
-    //         },
-    //         (error) => {
-    //             // Error function
-    //             console.log('error')
-    //         },
-    //         () => {
-    //             // Complete function
-    //             // Grabbing image from firebase storage
-    //             storage.ref('image').child(image.name).getDownloadURL().then(url => {
-    //                 console.log(url)
-    //             })
-
-    //         });
-    // }
 
     render(){
         return(
@@ -153,6 +119,7 @@ class ProfileForm extends Component{
                             onChange={this.getUserInputName}
                             value={this.state.userInputName}
                             placeholder="Name"
+                            name="userInputName"
                         />
                     </div>
 
@@ -164,16 +131,9 @@ class ProfileForm extends Component{
                             name="petPhoto"
                             id="petPhoto"
                             onChange={this.getUserInputPhoto}
-
-                            // Firebase storage:
-                            // onChange={this.handleChange}
                             value={this.state.userInputPhoto}
                             placeholder="Photo"
                         />
-                        {/* Messing with Firebase Storage */}
-                        {/* <button onClick={this.handleUpload}>
-                            Upload image
-                        </button> */}
                     </div>
 
                     {/* Age */}
@@ -185,7 +145,36 @@ class ProfileForm extends Component{
                             onChange={this.getUserInputAge}
                             value={this.state.userInputAge}
                             placeholder="Age"
+                            name="userInputAge"
                         />
+                    </div>
+
+                    {/* Species */}
+                    <div className="overallHealthFormSpecies">
+                        <p>Species:</p>
+                        <input
+                            type="radio"
+                            id="petSpeciesDog"
+                            value="Dog"
+                            onChange={this.getUserInputSpecies}
+                            name="userInputSpecies"
+                        />
+                        <label htmlFor="petSpeciesDog">
+                            Dog
+                            {/* <img src={Dog} alt="Dog icon"/> */}
+                        </label>
+
+                        <input
+                            type="radio"
+                            id="petSpeciesCat"
+                            value="Cat"
+                            onChange={this.getUserInputSpecies}
+                            name="userInputSpecies"
+                        />
+                        <label htmlFor="petSpeciesCat">
+                            Cat
+                            {/* <img src={Cat} alt="Cat icon"/> */}
+                        </label>
                     </div>
 
                     {/* Breed */}
@@ -197,6 +186,7 @@ class ProfileForm extends Component{
                             onChange={this.getUserInputBreed}
                             value={this.state.userInputBreed}
                             placeholder="Breed"
+                            name="userInputBreed"
                         />
                     </div>
 
@@ -206,36 +196,36 @@ class ProfileForm extends Component{
                         <input
                             type="radio"
                             id="petSexMale"
-                            name="sex"
                             value="Male"
                             onChange={this.getUserInputSex}
+                            name="userInputSex"
                         />
                         <label htmlFor="petSexMale">Intact male</label>
 
                         <input
                             type="radio"
                             id="petSexFemale"
-                            name="sex"
                             value="Female"
                             onChange={this.getUserInputSex}
+                            name="userInputSex"
                         />
                         <label htmlFor="petSexFemale">Intact female</label>
 
                         <input
                             type="radio"
                             id="petSexNeutered"
-                            name="sex"
                             value="Neutered"
                             onChange={this.getUserInputSex}
+                            name="userInputSex"
                         />
                         <label htmlFor="petSexNeutered">Neutered male</label>
 
                         <input
                             type="radio"
                             id="petSexSpayed"
-                            name="sex"
                             value="Spayed"
                             onChange={this.getUserInputSex}
+                            name="userInputSex"
                         />
                         <label htmlFor="petSexSpayed">Spayed female</label>
                     </div>

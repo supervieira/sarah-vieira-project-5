@@ -70,9 +70,15 @@ h1,h2,h3{
 .OverallHealth,
 .Calendar,
 .Toxicity{
-  line-height: 1.6;
   letter-spacing: 2px;
   color: rgb(88, 85, 85);
+}
+
+.titleScreen,
+.Home,
+.Calendar,
+.Toxicity{
+  line-height: 1.6;
 }
 
 .titleScreen{
@@ -94,13 +100,17 @@ h1{
   margin: 0;
 }
 
+.titleScreen ul{
+  padding: 0;
+}
+
 .titleScreen li{
   list-style: none;
 }
 
 .titleScreen h2{
   text-transform: capitalize;
-  font-size: 3vw;
+  font-size: 30px;
 }
 
 .titleScreen img{
@@ -129,9 +139,9 @@ h1{
   letter-spacing: 5px;
   border: 1px solid rgba(211,211,211,0.568);
   margin: 30px auto 0;
-  width: 20vw;
-  padding: 3px 0;
+  padding: 3px 25px;
   margin-top: 20px;
+  display: inline-block;
 }
 
 .titleScreenPetDiv:hover .titleScreenPetImage{
@@ -212,9 +222,14 @@ span{
   margin-left: 2%;
 }
 
-.overallHealthFormSex{
+.overallHealthFormSex,
+.overallHealthFormSpecies{
   display: flex;
   align-items: center;
+}
+
+.overallHealthFormSpecies{
+  width: 300px;
 }
 
 .overallHealthFormSex input{
@@ -224,7 +239,6 @@ span{
 .overallHealthPhoto{
   width: 300px;
   height: 300px;
-  outline: 0.5px solid lightgrey;
 }
 
 .profileImage{
@@ -234,7 +248,7 @@ span{
 
 .overallHealthFlex {
   display: flex;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 
 .OverallHealthUpdate{
@@ -341,6 +355,7 @@ button{
 }
 
 
+
 /* Pseudoelements */
 
 
@@ -357,18 +372,13 @@ button:hover a{
 
 
 
-
-
-
-
-
-
-
-
-
 /* Media Queries */
 
 @media(max-width:1050px){
+  .titleScreenCenter{
+    margin-top: 12%;
+  }
+
   /* Home */
   .homeQuadrant{
     margin: 0 5vw;
@@ -416,6 +426,17 @@ button:hover a{
 }
 
 @media(max-width:800px){
+  
+  .titleScreenPetImage{
+    width: 175px;
+    height: 175px;
+    margin: 2vw;
+  }
+  
+  .titleScreenCenter{
+    margin-top: 18%;
+  }
+
   /* Home */
   .homeQuadrant{
     width: 200px;
@@ -426,10 +447,37 @@ button:hover a{
   }
 }
 
+@media(max-width: 600px){
+  .titleScreenPets {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleScreenCenter{
+    margin-top: 0;
+  }
+
+  .titleScreenPetDiv{
+    display: flex;
+    align-items: center;
+  }
+
+  .titleScreenPetDiv p {
+    display: none;
+  }
+  
+  .homeGrid{
+    margin-top: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media(max-width: 550px){
   .homeQuadrant{
     width: 150px;
   }
+
 
   .printInput{
     flex-direction: column;
@@ -438,6 +486,19 @@ button:hover a{
   .overallHealthPhoto{
     margin: 0;
     width: 100%;
+  }
+
+  .overallHealthFormSex{
+    font-size: 12px;
+  }
+
+}
+
+@media(max-width: 400px){
+  .titleScreenPetImage{
+    width: 115px;
+    height: 115px;
+    margin: 3vh;
   }
 }
 

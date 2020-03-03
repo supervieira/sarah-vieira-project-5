@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css'
 import firebase from './firebase';
-import { storage } from './firebase';
+// import { storage } from './firebase';
 
 import Title from './Components/Title';
 import Home from './Components/Home';
@@ -23,10 +23,11 @@ class App extends Component {
     this.state = {
       pets: [],
       name: '',
-      photo:'',
       age: '',
       breed: '',
       sex: '',
+      species: '',
+      photo:'',
       imgFile: '',
       imgSrc: null
     }
@@ -83,6 +84,16 @@ class App extends Component {
         sex: sex,
       })
     })
+
+    const dbSpecies = firebase.database().ref('overallHealth/species')
+
+    dbSpecies.on('value', (response) => {
+      const species = response.val();
+
+      this.setState({
+        species: species,
+      })
+    })
   }
 
   // onSubmit event handler for Profile form submit
@@ -94,13 +105,17 @@ class App extends Component {
       age: userInput.userInputAge,
       breed: userInput.userInputBreed,
       sex: userInput.userInputSex,
-      photo: userInput.photo,
+      species: userInput.userInputSpecies,
+      photo: userInput.userInputPhoto,
       imgFile: userInput.imgFile,
       imgSrc: userInput.imgSrc
     }, () => {
-      console.log(this.state.photo)
+      // console.log(this.state.photo)
+      // console.log(this.state.imgSrc)
+      // console.log(this.state.imgFile)
+
       console.log(this.state.imgSrc)
-      console.log(this.state.imgFile)
+      console.log(this.state.species)
 
       const dbOverallHealth = firebase.database().ref('overallHealth')
 
@@ -109,6 +124,7 @@ class App extends Component {
       dbOverallHealth.update({ age: this.state.age })
       dbOverallHealth.update({ breed: this.state.breed })
       dbOverallHealth.update({ sex: this.state.sex })
+      dbOverallHealth.update({ species: this.state.species })
 
 
 
@@ -171,6 +187,7 @@ class App extends Component {
               age = {this.state.age}
               breed = {this.state.breed}
               sex = {this.state.sex}
+              species = {this.state.species}
               imgSrc = {this.state.imgSrc}
             />
 
