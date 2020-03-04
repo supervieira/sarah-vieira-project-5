@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sarah-vieira-project-5/static/css/main.b68a1869.chunk.css",
+    "main.css": "/sarah-vieira-project-5/static/css/main.4bf4b3ec.chunk.css",
     "main.js": "/sarah-vieira-project-5/static/js/main.5a5828e7.chunk.js",
     "main.js.map": "/sarah-vieira-project-5/static/js/main.5a5828e7.chunk.js.map",
     "runtime-main.js": "/sarah-vieira-project-5/static/js/runtime-main.d17c7b49.js",
@@ -8,9 +8,9 @@
     "static/js/2.428fe5ab.chunk.js": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js",
     "static/js/2.428fe5ab.chunk.js.map": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js.map",
     "index.html": "/sarah-vieira-project-5/index.html",
-    "precache-manifest.f746bfd3343970ca781568d81203637b.js": "/sarah-vieira-project-5/precache-manifest.f746bfd3343970ca781568d81203637b.js",
+    "precache-manifest.68d4ef355b6055ce99014431c0ada0a8.js": "/sarah-vieira-project-5/precache-manifest.68d4ef355b6055ce99014431c0ada0a8.js",
     "service-worker.js": "/sarah-vieira-project-5/service-worker.js",
-    "static/css/main.b68a1869.chunk.css.map": "/sarah-vieira-project-5/static/css/main.b68a1869.chunk.css.map",
+    "static/css/main.4bf4b3ec.chunk.css.map": "/sarah-vieira-project-5/static/css/main.4bf4b3ec.chunk.css.map",
     "static/js/2.428fe5ab.chunk.js.LICENSE.txt": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js.LICENSE.txt",
     "static/media/brooks.jpg": "/sarah-vieira-project-5/static/media/brooks.8a7b3ee4.jpg",
     "static/media/diagnosis.png": "/sarah-vieira-project-5/static/media/diagnosis.2241c6d9.png",
@@ -25,7 +25,7 @@
   "entrypoints": [
     "static/js/runtime-main.d17c7b49.js",
     "static/js/2.428fe5ab.chunk.js",
-    "static/css/main.b68a1869.chunk.css",
+    "static/css/main.4bf4b3ec.chunk.css",
     "static/js/main.5a5828e7.chunk.js"
   ]
 }
