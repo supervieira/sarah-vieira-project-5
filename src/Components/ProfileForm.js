@@ -69,7 +69,6 @@ class ProfileForm extends Component{
     }
 
     // This function will run "submitUserInput" function from parent
-    // This function was previosly used to empty local state so that our form empties after submit, but I removed this feature because form will only be updating the same one pet at this point in time. Stretch goal is to add multiple pets.
     handleFormSubmit = (e) => {
         this.props.functionFromParent(e, this.state)
     }
