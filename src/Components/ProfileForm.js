@@ -74,6 +74,20 @@ class ProfileForm extends Component{
         this.props.functionFromParent(e, this.state)
     }
 
+    clear = (e) => {
+        this.setState({
+            userInputName: '',
+            userInputAge: '',
+            userInputBreed: '',
+            userInputSex: '',
+            userInputSpecies: '',
+            userInputUrl: '',
+            userInputPhoto: '',
+            imgFile: '',
+            imgSrc: null,
+        })
+    }
+
     render(){
         return(
             <div className="OverallHealthUpdate">
@@ -243,6 +257,15 @@ class ProfileForm extends Component{
                     {/* Form submit button */}
                     <button type="submit" value="submit" className="profileUpdate">
                         Update
+                    </button>
+
+                    {/* Clear all button */}
+                    <button 
+                        value="submit" 
+                        className="clear"
+                        onClick={this.clear}
+                    >
+                        clear form
                     </button>
                 </form>
             </div>
