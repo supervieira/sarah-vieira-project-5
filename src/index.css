@@ -51,6 +51,14 @@ h1,h2,h3{
 .Calendar,
 .Toxicity{
   min-height: 100vh;
+}
+
+.titleScreen,
+.Home,
+.OverallHealth,
+.Calendar,
+.Toxicity,
+.Footer{
   letter-spacing: 2px;
   color: rgb(88, 85, 85);
 }
@@ -65,12 +73,13 @@ h1,h2,h3{
 .titleScreen,
 .Home,
 .Calendar,
-.Toxicity{
+.Toxicity,
+.Footer{
   line-height: 1.6;
 }
 
-.titleScreen{
-  padding-bottom: 8%;
+.titleScreen,
+.Footer{
   color: rgba(211, 211, 211, 0.568);
   background: rgba(20,20,20);
 }
@@ -85,6 +94,10 @@ button{
 }
 
 /* TITLE PAGE STYLING */
+
+.titleScreen{
+  padding-bottom: 8%;
+}
 
 h1{
   font-size: 60px;
@@ -335,8 +348,19 @@ span{
 
 /* TOXICITY SECTION STYLING */
 
+.Toxicity{
+ padding-bottom: 50px;
+}
+
 .petPoisonImg{
   margin-top: 3%;
+}
+
+/* FOOTER STYLING */
+
+.Footer{
+  text-align: center;
+  padding: 1px;
 }
 
 

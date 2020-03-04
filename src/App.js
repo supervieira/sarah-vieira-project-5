@@ -8,10 +8,13 @@ import ProfileForm from './Components/ProfileForm';
 import PrintInput from './Components/PrintInput';
 import Calendar from './Components/Calendar';
 import Toxicity from './Components/Toxicity';
+import Footer from './Components/Footer'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 library.add(fas, faTrashAlt)
+
+
 
 class App extends Component {
   constructor(){
@@ -170,6 +173,7 @@ class App extends Component {
 
         <Calendar/>
         <Toxicity/>
+        <Footer/>
       </div>
     );
   }

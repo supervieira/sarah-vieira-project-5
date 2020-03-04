@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Heart from '../assets/heart.png';
 import Chart from '../assets/chart.png';
 import Food from '../assets/food.png';
