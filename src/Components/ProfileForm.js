@@ -106,6 +106,7 @@ class ProfileForm extends Component{
                             value={this.state.userInputName}
                             placeholder="Name"
                             name="userInputName"
+                            required
                         />
                     </div>
 
@@ -145,6 +146,7 @@ class ProfileForm extends Component{
                             value={this.state.userInputAge}
                             placeholder="Age"
                             name="userInputAge"
+                            required
                         />
                     </div>
 
@@ -157,6 +159,7 @@ class ProfileForm extends Component{
                             value="Dog"
                             onChange={this.getUserInputSpecies}
                             name="userInputSpecies"
+                            required
                         />
                         <label htmlFor="petSpeciesDog">
                             Dog
@@ -168,9 +171,22 @@ class ProfileForm extends Component{
                             value="Cat"
                             onChange={this.getUserInputSpecies}
                             name="userInputSpecies"
+                            required
                         />
                         <label htmlFor="petSpeciesCat">
                             Cat
+                        </label>
+
+                        <input
+                            type="radio"
+                            id="petSpeciesOther"
+                            value="Other"
+                            onChange={this.getUserInputSpecies}
+                            name="userInputSpecies"
+                            required
+                        />
+                        <label htmlFor="petSpeciesOther">
+                            Other
                         </label>
                     </div>
 
@@ -184,6 +200,7 @@ class ProfileForm extends Component{
                             value={this.state.userInputBreed}
                             placeholder="Breed"
                             name="userInputBreed"
+                            required
                         />
                     </div>
 
@@ -196,6 +213,7 @@ class ProfileForm extends Component{
                             value="Male"
                             onChange={this.getUserInputSex}
                             name="userInputSex"
+                            required
                         />
                         <label htmlFor="petSexMale">Intact male</label>
 
@@ -205,6 +223,7 @@ class ProfileForm extends Component{
                             value="Female"
                             onChange={this.getUserInputSex}
                             name="userInputSex"
+                            required
                         />
                         <label htmlFor="petSexFemale">Intact female</label>
 
@@ -214,6 +233,7 @@ class ProfileForm extends Component{
                             value="Neutered"
                             onChange={this.getUserInputSex}
                             name="userInputSex"
+                            required
                         />
                         <label htmlFor="petSexNeutered">Neutered male</label>
 
@@ -223,6 +243,7 @@ class ProfileForm extends Component{
                             value="Spayed"
                             onChange={this.getUserInputSex}
                             name="userInputSex"
+                            required
                         />
                         <label htmlFor="petSexSpayed">Spayed female</label>
                     </div>

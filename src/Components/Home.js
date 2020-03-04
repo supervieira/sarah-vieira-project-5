@@ -6,6 +6,11 @@ import Food from '../assets/food.png';
 import Poison from '../assets/poison.png';
 
 function Home(){
+
+        const comingSoon = (e) => {
+            alert("Diet section coming soon!");
+        }
+
         return(
             <div className="Home" id="home">
                 <h1>Fetch</h1>
@@ -29,7 +34,7 @@ function Home(){
                         </a>
                     </div>
                     
-                    <div className="homeQuadrant">
+                    <div className="homeQuadrant" onClick={comingSoon}>
                         <div className="homeImageContainer">
                             <img src={Food} alt="" />
                         </div>

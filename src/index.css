@@ -46,7 +46,8 @@ h1,h2,h3{
 }
 
 .titleScreen{
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 8%;
 }
 
 .Home,
@@ -172,6 +173,7 @@ h1{
   padding: 3%;
   text-align: center;
   margin: 0 10vw;
+  cursor: pointer;
 }
 
 a{
@@ -485,11 +487,4 @@ button:hover a{
   }
 }
 
-@media(max-width: 400px){
-  .titleScreenPetImage{
-    width: 115px;
-    height: 115px;
-    margin: 3vh;
-  }
-}
 

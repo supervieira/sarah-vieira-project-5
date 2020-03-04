@@ -5,33 +5,23 @@ import Add from '../assets/add.png';
 
 
 function Title(props){
+
+    const comingSoon = (e) => {
+        alert("This pet's information is not yet available - please check back soon!")
+    }
+
+    const comingSoonButton = (e) => {
+        alert("This functionality is not yet available - please check back soon!")
+    }
+
     return(
-        <div className="titleScreen">
+        <div className="titleScreen" id="title">
             <h1>Fetch</h1>
 
             <div className="titleScreenCenter">
                 <h2>your pets</h2>
 
                 <ul className="titleScreenPets">
-                    {/* Currently these two pets are hard-coded for styling/demostration purposes. Will work on adding new pets and linking them to their own individual nodes in Firebase. */}
-                    <li>
-                        <a className="titleScreenPetDiv" href="#home">
-                            <div className="titleScreenPetImage">
-                                <img src={Penny} alt="" />
-                            </div>
-                            <p className="titleScreenPetText">Penny</p>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a className="titleScreenPetDiv" href="#home">
-                            <div className="titleScreenPetImage">
-                                <img src={Brooks} alt="" />
-                            </div>
-                            <p className="titleScreenPetText">Brooks</p>
-                        </a>
-                    </li>
-                    
                     <li>
                         {                          
                             props.imgSrc ?
@@ -61,9 +51,29 @@ function Title(props){
                                     </a>
                         }
                     </li>
+                    
+                    {/* Currently these two pets are hard-coded for styling/demostration purposes. Will work on adding new pets and linking them to their own individual nodes in Firebase as stretch goal. */}
+                    <li>
+                        <a className="titleScreenPetDiv" href="#title" onClick={comingSoon}>
+                            <div className="titleScreenPetImage">
+                                <img src={Penny} alt="" />
+                            </div>
+                            <p className="titleScreenPetText">Penny</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a className="titleScreenPetDiv" href="#title" onClick={comingSoon}>
+                            <div className="titleScreenPetImage">
+                                <img src={Brooks} alt="" />
+                            </div>
+                            <p className="titleScreenPetText">Brooks</p>
+                        </a>
+                    </li>
+                    
                 </ul>
 
-                <p className="titleScreenManagePets">manage pets</p>
+                <p className="titleScreenManagePets" onClick={comingSoonButton}>manage pets</p>
 
             </div>
 
