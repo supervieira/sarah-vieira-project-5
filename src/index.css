@@ -137,27 +137,9 @@ h1{
   display: inline-block;
 }
 
-.titleScreenPetDiv:hover .titleScreenPetImage{
-  color: white;
-  outline: 2px solid white;
-  cursor: pointer;
-}
-
-.titleScreenPetDiv:hover .titleScreenPetText{
-  color: white;
-  cursor: pointer;
-}
-
-.titleScreenManagePets:hover{
-  color: white;
-  outline: 1px solid white;
-  cursor: pointer;
-}
-
 /* HOME PAGE STYLING*/
 
 .Home h2{
-  /* font-size: 2.5vw; */
   width: 100%
 }
 
@@ -271,7 +253,6 @@ span{
   padding: 30px;
   margin-top: 5%;
   border-radius: 10px;
-  /* min-width: 350px; */
 }
 
 .chartHeaderFlex{
@@ -352,8 +333,25 @@ button{
 
 /* Pseudoelements */
 
+.titleScreenPetDiv:hover .titleScreenPetImage{
+  color: white;
+  outline: 2px solid white;
+  cursor: pointer;
+}
 
-.Calendar form input:focus,
+.titleScreenPetDiv:hover .titleScreenPetText{
+  color: white;
+  cursor: pointer;
+}
+
+.titleScreenManagePets:hover{
+  color: white;
+  outline: 1px solid white;
+  cursor: pointer;
+}
+
+input:focus,
+.Calendar input:focus,
 button:focus{
   border: 1px solid grey;
 }
@@ -362,6 +360,14 @@ button:hover,
 button:hover a{
   background: grey;
   color: white;
+}
+
+.back:focus{
+  border: none;
+}
+
+.back a:focus{
+  font-weight: bold;
 }
 
 
