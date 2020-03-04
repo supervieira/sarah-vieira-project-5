@@ -45,26 +45,21 @@ h1,h2,h3{
   margin: 0 auto;
 }
 
-.titleScreen{
-  min-height: 100vh;
-  padding-bottom: 8%;
-}
-
-.Home,
-.OverallHealth,
-.Calendar,
-.Toxicity{
-  min-height: 100vh;
-  padding: 20px 0;
-}
-
 .titleScreen,
 .Home,
 .OverallHealth,
 .Calendar,
 .Toxicity{
+  min-height: 100vh;
   letter-spacing: 2px;
   color: rgb(88, 85, 85);
+}
+
+.Home,
+.OverallHealth,
+.Calendar,
+.Toxicity{
+  padding: 20px 0;
 }
 
 .titleScreen,
@@ -75,13 +70,18 @@ h1,h2,h3{
 }
 
 .titleScreen{
+  padding-bottom: 8%;
   color: rgba(211, 211, 211, 0.568);
   background: rgba(20,20,20);
 }
 
-.back{
-  width: 100px;
-  margin-top: 3%;
+button{
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
 }
 
 /* TITLE PAGE STYLING */
@@ -158,9 +158,18 @@ h1{
   cursor: pointer;
 }
 
+.back{
+  width: 100px;
+  margin-top: 3%;
+}
+
 a{
   color: rgb(88, 85, 85);
   text-decoration: none;
+}
+
+.back a{
+  padding: 10px;
 }
 
 /* OVERALL HEALTH SECTION STYLING */
@@ -208,6 +217,10 @@ span{
   width: 300px;
 }
 
+.overallHealthFormSex{
+  margin-top: 10px;
+}
+
 .overallHealthFormSex input{
   margin: 2%;
 }
@@ -237,8 +250,15 @@ span{
   width: 100%;
 }
 
+.sexInput{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-
+.sexInput input{
+  width: 0;
+}
 
 /* CALENDAR SECTION STYLING */
 
@@ -295,16 +315,6 @@ span{
   letter-spacing: 5px;
 }
 
-button{
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 15px;
-}
-
-
 .trashButton{
   background: none;
 }
@@ -323,7 +333,7 @@ button{
   margin: 2% 0;
 }
 
-/* Toxicity */
+/* TOXICITY SECTION STYLING */
 
 .petPoisonImg{
   margin-top: 3%;
@@ -379,16 +389,12 @@ button:hover a{
     margin-top: 12%;
   }
 
-  /* Home */
   .homeQuadrant{
     margin: 0 5vw;
   }
 }
 
 @media(max-width:900px){
-  
-  /* Profile */
-
   .printInput{
     display: flex;
   }
@@ -410,7 +416,6 @@ button:hover a{
     margin: 4% 0;
   }
 
-  /* Chart section */
   .overallHealth,
   .Calendar{
     margin-bottom: 5%;
@@ -437,7 +442,6 @@ button:hover a{
     margin-top: 18%;
   }
 
-  /* Home */
   .homeQuadrant{
     width: 200px;
   }
@@ -457,15 +461,6 @@ button:hover a{
     margin-top: 0;
   }
 
-  .titleScreenPetDiv{
-    display: flex;
-    align-items: center;
-  }
-
-  .titleScreenPetDiv p {
-    display: none;
-  }
-  
   .homeGrid{
     margin-top: 0;
     flex-direction: column;
@@ -478,7 +473,6 @@ button:hover a{
     width: 150px;
   }
 
-
   .printInput{
     flex-direction: column;
   }
@@ -489,6 +483,12 @@ button:hover a{
   }
 
   .overallHealthFormSex{
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+
+  .sexInput{
     font-size: 12px;
   }
 }

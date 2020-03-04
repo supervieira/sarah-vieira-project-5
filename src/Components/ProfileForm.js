@@ -68,21 +68,10 @@ class ProfileForm extends Component{
         })
     }
 
-    // This function will run "submitUserInput" function from parent, as well as empty our local state so that our form empties after submit
+    // This function will run "submitUserInput" function from parent
+    // This function was previosly used to empty local state so that our form empties after submit, but I removed this feature because form will only be updating the same one pet at this point in time. Stretch goal is to add multiple pets.
     handleFormSubmit = (e) => {
         this.props.functionFromParent(e, this.state)
-
-        this.setState({
-            userInputName: '',
-            userInputAge: '',
-            userInputBreed: '',
-            userInputSex: '',
-            userInputSpecies: '',
-            userInputUrl: '',
-            userInputPhoto: '',
-            imgFile: '',
-            imgSrc: null,
-        })
     }
 
     render(){
@@ -207,45 +196,48 @@ class ProfileForm extends Component{
                     {/* Sex */}
                     <div className="overallHealthFormSex">
                         <p>Sex:</p>
-                        <input
-                            type="radio"
-                            id="petSexMale"
-                            value="Male"
-                            onChange={this.getUserInputSex}
-                            name="userInputSex"
-                            required
-                        />
-                        <label htmlFor="petSexMale">Intact male</label>
 
-                        <input
-                            type="radio"
-                            id="petSexFemale"
-                            value="Female"
-                            onChange={this.getUserInputSex}
-                            name="userInputSex"
-                            required
-                        />
-                        <label htmlFor="petSexFemale">Intact female</label>
+                        <div className="sexInput">
+                            <input
+                                type="radio"
+                                id="petSexMale"
+                                value="Male"
+                                onChange={this.getUserInputSex}
+                                name="userInputSex"
+                                required
+                            />
+                            <label htmlFor="petSexMale">Intact male</label>
 
-                        <input
-                            type="radio"
-                            id="petSexNeutered"
-                            value="Neutered"
-                            onChange={this.getUserInputSex}
-                            name="userInputSex"
-                            required
-                        />
-                        <label htmlFor="petSexNeutered">Neutered male</label>
+                            <input
+                                type="radio"
+                                id="petSexFemale"
+                                value="Female"
+                                onChange={this.getUserInputSex}
+                                name="userInputSex"
+                                required
+                            />
+                            <label htmlFor="petSexFemale">Intact female</label>
 
-                        <input
-                            type="radio"
-                            id="petSexSpayed"
-                            value="Spayed"
-                            onChange={this.getUserInputSex}
-                            name="userInputSex"
-                            required
-                        />
-                        <label htmlFor="petSexSpayed">Spayed female</label>
+                            <input
+                                type="radio"
+                                id="petSexNeutered"
+                                value="Neutered"
+                                onChange={this.getUserInputSex}
+                                name="userInputSex"
+                                required
+                            />
+                            <label htmlFor="petSexNeutered">Neutered male</label>
+
+                            <input
+                                type="radio"
+                                id="petSexSpayed"
+                                value="Spayed"
+                                onChange={this.getUserInputSex}
+                                name="userInputSex"
+                                required
+                            />
+                            <label htmlFor="petSexSpayed">Spayed female</label>
+                        </div>
                     </div>
 
                     {/* Form submit button */}

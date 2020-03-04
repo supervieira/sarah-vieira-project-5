@@ -42,7 +42,7 @@ function Title(props){
                                         <p className="titleScreenPetText">{props.name}</p>
                                     </a> 
                                 :
-                                    // If neither image file or url photo is not available, print "Add Pet"
+                                    // If neither image file or url photo are available, print "Add Pet"
                                     <a className="titleScreenPetDiv" href="#home">
                                         <div className="titleScreenPetImage">
                                             <img className="profileImage" src={Add} alt="Pet" />
