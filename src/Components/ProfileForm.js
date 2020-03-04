@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import {storage} from '../firebase';
-// import Cat from '../assets/cat.png';
-// import Dog from '../assets/dog.png';
 
 class ProfileForm extends Component{
     constructor(){
@@ -13,6 +10,7 @@ class ProfileForm extends Component{
             userInputBreed: '',
             userInputSex: '',
             userInputSpecies: '',
+            userInputUrl: '',
             userInputPhoto: '',
             imgFile: '',
             imgSrc: null,
@@ -21,51 +19,38 @@ class ProfileForm extends Component{
 
     // Name onChange event listener
     getUserInputName = (e) => {
-        console.log(e.target.value)
-
         this.setState({
             userInputName: e.target.value
-        }, () => {
-            console.log(this.state.userInputName)
         })
-
     }
     
     // Photo onChange event listener
-    getUserInputPhoto = (e) => {
-        console.log(e.target.value)
-        
+    getUserInputPhoto = (e) => {        
         this.setState({
             userInputPhoto: e.target.value,
             imgFile: e.target.files[0],
             imgSrc: URL.createObjectURL(e.target.files[0])
-        }, () => {
-            console.log(this.state.userInputPhoto);
-            console.log(this.state.imgFile);
-            console.log(this.state.imgSrc)
         })
     }
     
+    // URL onChange event listener
+    getUserInputUrl = (e) => {
+        this.setState({
+            userInputUrl: e.target.value
+        })
+    }
 
     // Age onChange event listener
-    getUserInputAge = (e) => {
-        console.log(e.target.value)
-        
+    getUserInputAge = (e) => {        
         this.setState({
             userInputAge: e.target.value
-        }, () => {
-            console.log(this.state.userInputAge)
         })
     }
 
     // Breed onChange event listener
     getUserInputBreed = (e) => {
-        console.log(e.target.value)
-
         this.setState({
             userInputBreed: e.target.value
-        }, () => {
-            console.log(this.state.userInputBreed)
         })
     }
 
@@ -83,19 +68,20 @@ class ProfileForm extends Component{
         })
     }
 
-    // This function will run "submitUserInput" function from parent as well as empty our local state so that our form empties after submit
+    // This function will run "submitUserInput" function from parent, as well as empty our local state so that our form empties after submit
     handleFormSubmit = (e) => {
         this.props.functionFromParent(e, this.state)
 
         this.setState({
-            userInputPhoto: '',
             userInputName: '',
             userInputAge: '',
             userInputBreed: '',
             userInputSex: '',
             userInputSpecies: '',
+            userInputUrl: '',
+            userInputPhoto: '',
             imgFile: '',
-            imgSrc: null
+            imgSrc: null,
         })
     }
 
@@ -136,6 +122,19 @@ class ProfileForm extends Component{
                         />
                     </div>
 
+                    {/* URL */}
+                    <div className="overallHealthFormUrl">
+                        <label htmlFor="petUrl" className="visuallyHidden">Photo url</label>
+                        <input
+                            type="text"
+                            name="petUrl"
+                            id="petUrl"
+                            onChange={this.getUserInputUrl}
+                            value={this.state.userInputUrl}
+                            placeholder="Photo URL"
+                        />
+                    </div>
+
                     {/* Age */}
                     <div className="overallHealthFormAge">
                         <label htmlFor="petAge" className="visuallyHidden">Age:</label>
@@ -161,7 +160,6 @@ class ProfileForm extends Component{
                         />
                         <label htmlFor="petSpeciesDog">
                             Dog
-                            {/* <img src={Dog} alt="Dog icon"/> */}
                         </label>
 
                         <input
@@ -173,7 +171,6 @@ class ProfileForm extends Component{
                         />
                         <label htmlFor="petSpeciesCat">
                             Cat
-                            {/* <img src={Cat} alt="Cat icon"/> */}
                         </label>
                     </div>
 
@@ -241,6 +238,3 @@ class ProfileForm extends Component{
 }
 
 export default ProfileForm;
-
-// Tried to pass this.state as an argument to submitUserInput function in App.js (prop name = functionFromParent)...received the following error:
-// Objects are not valid as a React child (found: object with keys {userInputPhoto, userInputName, userInputAge, userInputBreed, userInputSex}). If you meant to render a collection of children, use an array instead.

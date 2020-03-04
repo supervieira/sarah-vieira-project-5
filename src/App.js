@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './index.css'
 import firebase from './firebase';
-// import { storage } from './firebase';
 
 import Title from './Components/Title';
 import Home from './Components/Home';
@@ -12,9 +11,7 @@ import Toxicity from './Components/Toxicity';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-
 library.add(fas, faTrashAlt)
-
 
 class App extends Component {
   constructor(){
@@ -27,6 +24,7 @@ class App extends Component {
       breed: '',
       sex: '',
       species: '',
+      url: '',
       photo:'',
       imgFile: '',
       imgSrc: null
@@ -52,6 +50,16 @@ class App extends Component {
 
       this.setState({
         imgSrc: photo,
+      })
+    })
+
+    const dbUrl = firebase.database().ref('overallHealth/url')
+
+    dbUrl.on('value', (response) => {
+      const url = response.val();
+
+      this.setState({
+        url: url,
       })
     })
 
@@ -106,17 +114,11 @@ class App extends Component {
       breed: userInput.userInputBreed,
       sex: userInput.userInputSex,
       species: userInput.userInputSpecies,
+      url: userInput.userInputUrl,
       photo: userInput.userInputPhoto,
       imgFile: userInput.imgFile,
       imgSrc: userInput.imgSrc
     }, () => {
-      // console.log(this.state.photo)
-      // console.log(this.state.imgSrc)
-      // console.log(this.state.imgFile)
-
-      console.log(this.state.imgSrc)
-      console.log(this.state.species)
-
       const dbOverallHealth = firebase.database().ref('overallHealth')
 
       dbOverallHealth.update({ name: this.state.name })
@@ -125,47 +127,8 @@ class App extends Component {
       dbOverallHealth.update({ breed: this.state.breed })
       dbOverallHealth.update({ sex: this.state.sex })
       dbOverallHealth.update({ species: this.state.species })
-
-
-
-
-      // Working with Firebase Cloud Storage
-      // const storage = firebase.storage();
-      // const storageRef = storage.ref();
-
-      // let file = this.state.imgSrc
-      // storageRef.put(file).then(function (snapshot) {
-      //   console.log('Uploaded a blob or file!');
-      // });
-
-      // let message = 'This is my message.';
-      // ref.putString(message).then(function (snapshot) {
-      //   console.log('Uploaded a raw string!');
-      // });
-
-      // Messing around with Firebase storage
-      // const { image } = this.state;
-      // const uploadTask = storage.ref(`images/${image.name}`).put(image);
-
-      // uploadTask.on('state_changed',
-      //   (snapshot) => {
-      //     // Progress function
-      //   },
-      //   (error) => {
-      //     // Error function
-      //     console.log('error')
-      //   },
-      //   () => {
-      //     // Complete function
-      //     // Grabbing image from firebase storage
-      //     storage.ref('image').child(image.name).getDownloadURL().then(url => {
-      //       console.log(url)
-      //     })
-
-      //   });
+      dbOverallHealth.update({ url: this.state.url })
     });
-
-    // URL.revokeObjectURL(e.target.files[0]); //to avoid memory issues
   }
 
   render(){
@@ -174,6 +137,7 @@ class App extends Component {
         <Title
           name={this.state.name}
           imgSrc={this.state.imgSrc}
+          url={this.state.url}
         />
         <Home/>
 
@@ -189,6 +153,7 @@ class App extends Component {
               sex = {this.state.sex}
               species = {this.state.species}
               imgSrc = {this.state.imgSrc}
+              url = {this.state.url}
             />
 
             <ProfileForm

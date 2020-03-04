@@ -1,17 +1,21 @@
 import React from 'react';
-// import Cat from '../assets/cat.png';
 import Dog from '../assets/dog.png';
 
 function PrintInput(props){
     return(
-        // How to keep info printed on page after refresh?
         <div className="printInput">
             <div className="overallHealthPhoto">
                 {
                     props.imgSrc ? 
-                    <img className="profileImage" src={props.imgSrc} alt="Pet" />
-                    :
-                    <img className= "profileImage" src={Dog} alt="Pet"/>
+                        // If image file is available, print image to page
+                        <img className="profileImage" src={props.imgSrc} alt="Pet" />
+                    :   
+                        props.url ? 
+                            // If image file is NOT available, but url image is available, print url image to page
+                            <img className="profileImage" src={props.url} alt="Pet" />
+                        :
+                            // If neither image file or url photo is not available, print {Dog} image (default with empty state)
+                            <img className="profileImage" src={Dog} alt="Pet"/>
                 }
             </div>
             <div>
