@@ -22,125 +22,243 @@ class App extends Component {
 
     this.state = {
       pets: [],
-      name: '',
-      age: '',
-      breed: '',
-      sex: '',
-      species: '',
-      url: '',
-      photo:'',
-      imgFile: '',
-      imgSrc: null
+      currentPet: {
+        name: '',
+        age: '',
+        breed: '',
+        sex: '',
+        species: '',
+        url: '',
+        photo: '',
+        imgFile: '',
+        imgSrc: null
+      },
+      petId: '',
+      newPet: false
     }
   }
 
+  // componentDidUpdate(prevProps){
+  //   if (this.props.currentPet !== prevProps.currentPet) {
+  //     this.updatePetsArray(this.props.currentPet);
+  //   }
+  // }
+
   // Obtaining data from Firebase
   componentDidMount(){
-    const dbName = firebase.database().ref('overallHealth/name')
 
-    dbName.on('value', (response) => {
-      const name = response.val();
+    const dbPets = firebase.database().ref('pets')
+
+    dbPets.on('value', (response) => {
+      const pets = response.val();
+
+      const petsArr = Object.keys(pets).map((name) => {
+        return {
+          name: name,
+          ...pets[name]
+        }
+      });
 
       this.setState({
-        name: name,
+        pets: petsArr,
       })
     })
 
-    const dbPhoto = firebase.database().ref('overallHealth/photo')
+    // const dbName = firebase.database().ref('overallHealth/name')
 
-    dbPhoto.on('value', (response) => {
-      const photo = response.val();
+    // dbName.on('value', (response) => {
+    //   const name = response.val();
 
-      this.setState({
-        imgSrc: photo,
-      })
-    })
+    //   this.setState({
+    //     name: name,
+    //   })
+    // })
 
-    const dbUrl = firebase.database().ref('overallHealth/url')
+    // const dbPhoto = firebase.database().ref('overallHealth/photo')
 
-    dbUrl.on('value', (response) => {
-      const url = response.val();
+    // dbPhoto.on('value', (response) => {
+    //   const photo = response.val();
 
-      this.setState({
-        url: url,
-      })
-    })
+    //   this.setState({
+    //     imgSrc: photo,
+    //   })
+    // })
 
-    const dbAge = firebase.database().ref('overallHealth/age')
+    // const dbUrl = firebase.database().ref('overallHealth/url')
 
-    dbAge.on('value', (response) => {
-      const age = response.val();
+    // dbUrl.on('value', (response) => {
+    //   const url = response.val();
 
-      this.setState({
-        age: age,
-      })
-    })
+    //   this.setState({
+    //     url: url,
+    //   })
+    // })
 
-    const dbBreed = firebase.database().ref('overallHealth/breed')
+    // const dbAge = firebase.database().ref('overallHealth/age')
 
-    dbBreed.on('value', (response) => {
-      const breed = response.val();
+    // dbAge.on('value', (response) => {
+    //   const age = response.val();
 
-      this.setState({
-        breed: breed,
-      })
-    })
+    //   this.setState({
+    //     age: age,
+    //   })
+    // })
 
-    const dbSex = firebase.database().ref('overallHealth/sex')
+    // const dbBreed = firebase.database().ref('overallHealth/breed')
 
-    dbSex.on('value', (response) => {
-      const sex = response.val();
+    // dbBreed.on('value', (response) => {
+    //   const breed = response.val();
 
-      this.setState({
-        sex: sex,
-      })
-    })
+    //   this.setState({
+    //     breed: breed,
+    //   })
+    // })
 
-    const dbSpecies = firebase.database().ref('overallHealth/species')
+    // const dbSex = firebase.database().ref('overallHealth/sex')
 
-    dbSpecies.on('value', (response) => {
-      const species = response.val();
+    // dbSex.on('value', (response) => {
+    //   const sex = response.val();
 
-      this.setState({
-        species: species,
-      })
-    })
+    //   this.setState({
+    //     sex: sex,
+    //   })
+    // })
+
+    // const dbSpecies = firebase.database().ref('overallHealth/species')
+
+    // dbSpecies.on('value', (response) => {
+    //   const species = response.val();
+
+    //   this.setState({
+    //     species: species,
+    //   })
+    // })
   }
 
   // onSubmit event handler for Profile form submit
   submitUserInput = (e, userInput) => {
     e.preventDefault();
 
-    this.setState({
-      name: userInput.userInputName,
-      age: userInput.userInputAge,
-      breed: userInput.userInputBreed,
-      sex: userInput.userInputSex,
-      species: userInput.userInputSpecies,
-      url: userInput.userInputUrl,
-      photo: userInput.userInputPhoto,
-      imgFile: userInput.imgFile,
-      imgSrc: userInput.imgSrc
-    }, () => {
-      const dbOverallHealth = firebase.database().ref('overallHealth')
+    console.log(this.state.newPet)
 
-      dbOverallHealth.update({ name: this.state.name })
-      dbOverallHealth.update({ photo: this.state.imgSrc })
-      dbOverallHealth.update({ age: this.state.age })
-      dbOverallHealth.update({ breed: this.state.breed })
-      dbOverallHealth.update({ sex: this.state.sex })
-      dbOverallHealth.update({ species: this.state.species })
-      dbOverallHealth.update({ url: this.state.url })
+    // Adding an entirely new pet
+    if(this.state.newPet){
+      const dbPets = firebase.database().ref('pets')
+      const key = dbPets.push().getKey()
+  
+      const dbCurrentPet = firebase.database().ref('pets/' + key)
+  
+      dbCurrentPet.update({
+        overallHealth: '',
+        calendar: '',
+        diet: ''
+      });
+  
+      this.setState({
+        currentPet:{
+          name: userInput.userInputName,
+          age: userInput.userInputAge,
+          breed: userInput.userInputBreed,
+          sex: userInput.userInputSex,
+          species: userInput.userInputSpecies,
+          url: userInput.userInputUrl,
+          photo: userInput.userInputPhoto,
+          imgFile: userInput.imgFile,
+          imgSrc: userInput.imgSrc
+        }
+      }, () => {
+        const dbOverallHealth = firebase.database().ref('pets/' + key + '/overallHealth')
+        dbOverallHealth.update(this.state.currentPet)
+  
+        this.updatePetsArray();
+      });
+    }
+    
+    // Updating already-existing pet information
+    else{
+      console.log('Updating pet information')
+
+      this.setState({
+        currentPet: {
+          name: userInput.userInputName,
+          age: userInput.userInputAge,
+          breed: userInput.userInputBreed,
+          sex: userInput.userInputSex,
+          species: userInput.userInputSpecies,
+          url: userInput.userInputUrl,
+          photo: userInput.userInputPhoto,
+          imgFile: userInput.imgFile,
+          imgSrc: userInput.imgSrc
+        }
+      }, () => {
+        const dbCurrentPet = firebase.database().ref('pets/' + this.state.petId + '/overallHealth')
+        dbCurrentPet.update(this.state.currentPet)
+
+        this.updatePetsArray();
+      });
+    }
+  }
+
+  // Event handler for "Add Pets" button on Title page
+  addPet = () => {    
+    console.log("'Add pets' button has been clicked")
+
+    this.setState({
+      currentPet: {},
+      newPet: true
+    }, () => {
+      console.log(this.state.pets)
+      console.log(this.state.newPet)
     });
+  }
+
+  // Function to update pets array once state has been updated
+  updatePetsArray = () => {
+    const dbPets = firebase.database().ref('pets')
+
+    dbPets.on('value', (response) => {
+      const pets = response.val();
+
+      const petsArr = Object.keys(pets).map((name) => {
+        return {
+          name: name,
+          ...pets[name]
+        }
+      });
+
+      this.setState({
+        pets: petsArr,
+      }, () => {
+        console.log(this.state.pets)
+      })
+    })
+  }
+
+  // Function to display pet information when selected on Title Screen
+  selectedPet = (pet) => {
+    console.log("Pet has been selected")
+    console.log(pet)
+    console.log(pet.name)
+
+    this.setState({
+      currentPet: pet.overallHealth,
+      newPet: false,
+      petId: pet.name
+    }, () => {
+      console.log(this.state.currentPet)
+      console.log(this.state.newPet)
+      console.log(this.state.petId)
+    })
   }
 
   render(){
     return(
       <div className="App">
         <Title
-          name={this.state.name}
-          imgSrc={this.state.imgSrc}
-          url={this.state.url}
+          addPet={this.addPet}
+          currentPet={this.state.currentPet}
+          pets={this.state.pets}
+          selectedPet={this.selectedPet}
         />
         <Home/>
 
@@ -149,14 +267,7 @@ class App extends Component {
 
           <div className="overallHealthFlex wrapper">
             <PrintInput
-              name = {this.state.name}
-              photo = {this.state.photo}
-              age = {this.state.age}
-              breed = {this.state.breed}
-              sex = {this.state.sex}
-              species = {this.state.species}
-              imgSrc = {this.state.imgSrc}
-              url = {this.state.url}
+              currentPet={this.state.currentPet}
             />
 
             <ProfileForm
@@ -171,7 +282,9 @@ class App extends Component {
           </div>
         </div>
 
-        <Calendar/>
+        <Calendar
+          petId={this.state.petId}
+        />
         <Toxicity/>
         <Footer/>
       </div>

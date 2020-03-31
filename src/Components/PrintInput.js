@@ -6,24 +6,24 @@ function PrintInput(props){
         <div className="printInput">
             <div className="overallHealthPhoto">
                 {
-                    props.imgSrc ? 
+                    props.currentPet.imgSrc ? 
                         // If image file is available, print image to page
-                        <img className="profileImage" src={props.imgSrc} alt="Pet" />
+                        <img className="profileImage" src={props.currentPet.imgSrc} alt="Pet" />
                     :   
-                        props.url ? 
+                        props.currentPet.url ? 
                             // If image file is NOT available, but url image is available, print url image to page
-                            <img className="profileImage" src={props.url} alt="Pet" />
+                            <img className="profileImage" src={props.currentPet.url} alt="Pet" />
                         :
                             // If neither image file or url photo is not available, print {Dog} image (default with empty state)
                             <img className="profileImage" src={Dog} alt="Pet"/>
                 }
             </div>
             <div>
-                <p className="name">{props.name}</p>
-                <p><span>Age: </span>{props.age}</p>
-                <p><span>Species: </span>{props.species}</p>
-                <p><span>Breed: </span>{props.breed}</p>
-                <p><span>Sex: </span>{props.sex}</p>
+                <p className="name">{props.currentPet.name}</p>
+                <p><span>Age: </span>{props.currentPet.age}</p>
+                <p><span>Species: </span>{props.currentPet.species}</p>
+                <p><span>Breed: </span>{props.currentPet.breed}</p>
+                <p><span>Sex: </span>{props.currentPet.sex}</p>
             </div>
         </div>
     )

@@ -18,8 +18,8 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
-        const dbSymptomsRef = firebase.database().ref('calendar/symptoms');
-        const dbRxRef = firebase.database().ref('calendar/prescriptions');
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
 
         dbSymptomsRef.on('value', (response) => {
             // Store response object in a variable:
@@ -89,7 +89,7 @@ class Calendar extends Component {
     handleSymptomFormSubmit = (e) => {
         e.preventDefault();
 
-        const dbSymptomsRef = firebase.database().ref('calendar/symptoms');
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
 
         dbSymptomsRef.push(this.state.userInputSymptom);
 
@@ -101,7 +101,7 @@ class Calendar extends Component {
     handleRxFormSubmit = (e) => {
         e.preventDefault();
 
-        const dbRxRef = firebase.database().ref('calendar/prescriptions');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
 
         dbRxRef.push(this.state.userInputRx);
 
@@ -113,13 +113,13 @@ class Calendar extends Component {
     // -----------------------------------------------------------
 
     removeSymptom = (symptomKey) => {
-        const dbSymptomsRef = firebase.database().ref('calendar/symptoms');
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
 
         dbSymptomsRef.child(symptomKey).remove();
     }
 
     removePrescription = (rxKey) => {
-        const dbRxRef = firebase.database().ref('calendar/prescriptions');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
 
         dbRxRef.child(rxKey).remove();
     }
