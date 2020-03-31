@@ -13,62 +13,96 @@ class Calendar extends Component {
             petSymptoms: [],
             petRx: [],
             userInputSymptom: '',
-            userInputRx: ''
+            userInputRx: '',
+        }
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (this.props.petInfo.name !== prevProps.petInfo.name) {
+            this.updateState();
         }
     }
 
     componentDidMount() {
-        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
-        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
+        const symptomArray = [];
+        for (let key in this.props.petInfo.calendar.symptoms){            
+            const temp = {
+                key: key,
+                value: this.props.petInfo.calendar.symptoms[key]
+            }
 
+            symptomArray.push(temp)
+        }
+
+        const rxArray = [];
+        for (let key in this.props.petInfo.calendar.prescriptions) {
+            const temp = {
+                key: key,
+                value: this.props.petInfo.calendar.prescriptions[key]
+            }
+
+            rxArray.push(temp)
+        }
+
+        this.setState({
+            petSymptoms: symptomArray,
+            petRx: rxArray,
+        })
+    }
+
+    updateState = () => {
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/symptoms');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/prescriptions');
+    
         dbSymptomsRef.on('value', (response) => {
             // Store response object in a variable:
             const dataFromDb = response.val();
-
+        
             // Create a new array to store response properties
             const stateToBeSet = [];
-
+    
             for (let key in dataFromDb) {
                 // stateToBeSet.push(dataFromDb[key]);
-
+    
                 const symptomInfo = {
                     key: key,
-                    name: dataFromDb[key]
+                    value: dataFromDb[key]
                 }
-
+    
                 stateToBeSet.push(symptomInfo);
             }
-
+    
             // Set new stateToBeSet array to our state
             this.setState({
                 petSymptoms: stateToBeSet,
             })
         })
-
+    
         dbRxRef.on('value', (response) => {
             // Store response object in a variable:
             const dataFromDb = response.val();
-
+    
             // Create a new array to store response properties
             const stateToBeSet = [];
-
+    
             for (let key in dataFromDb) {
                 // stateToBeSet.push(dataFromDb[key]);
-
+    
                 const rxInfo = {
                     key: key,
-                    name: dataFromDb[key]
+                    value: dataFromDb[key]
                 }
-
+    
                 stateToBeSet.push(rxInfo);
             }
-
+    
             // Set new stateToBeSet array to our state
             this.setState({
                 petRx: stateToBeSet,
             })
         })
     }
+
 
     // -----------------------------------------------------------
 
@@ -89,39 +123,55 @@ class Calendar extends Component {
     handleSymptomFormSubmit = (e) => {
         e.preventDefault();
 
-        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/symptoms');
 
         dbSymptomsRef.push(this.state.userInputSymptom);
 
+        let arrayCopy = this.state.petSymptoms
+        arrayCopy.push(this.state.userInputSymptom)
+
         this.setState({
-            userInputSymptom: ""
+            userInputSymptom: "",
+            petSymptoms: arrayCopy
         })
+
+        this.updateState();
     }
 
     handleRxFormSubmit = (e) => {
         e.preventDefault();
 
-        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/prescriptions');
 
         dbRxRef.push(this.state.userInputRx);
 
+        let arrayCopy = this.state.petRx
+        arrayCopy.push(this.state.userInputRx)
+
         this.setState({
-            userInputRx: ""
+            userInputRx: "",
+            petRx: arrayCopy
         })
+
+        this.updateState();
     }
 
     // -----------------------------------------------------------
 
     removeSymptom = (symptomKey) => {
-        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/symptoms');
+        const dbSymptomsRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/symptoms');
 
         dbSymptomsRef.child(symptomKey).remove();
+
+        this.updateState();
     }
 
     removePrescription = (rxKey) => {
-        const dbRxRef = firebase.database().ref('pets/' + this.props.petId + '/calendar/prescriptions');
+        const dbRxRef = firebase.database().ref('pets/' + this.props.petInfo.name + '/calendar/prescriptions');
 
         dbRxRef.child(rxKey).remove();
+
+        this.updateState();
     }
 
     // -----------------------------------------------------------
@@ -145,7 +195,7 @@ class Calendar extends Component {
                                     return (
                                         <li key={symptom.key}>
                                             <div className="calendarListFlex">
-                                                <p>{symptom.name}</p>
+                                                <p>{symptom.value}</p>
                                                 <button className="trashButton" onClick={() => {this.removeSymptom(symptom.key) }}>
                                                     <FontAwesomeIcon className="trashIcon" icon="trash-alt"/>
                                                 </button>
@@ -182,7 +232,7 @@ class Calendar extends Component {
                                     return (
                                         <li key={prescription.key}>
                                             <div className="calendarListFlex">
-                                                <p>{prescription.name}</p>
+                                                <p>{prescription.value}</p>
                                                 <button className="trashButton" onClick={() => { this.removePrescription(prescription.key) }}>
                                                     <FontAwesomeIcon className="trashIcon" icon="trash-alt" />
                                                 </button>

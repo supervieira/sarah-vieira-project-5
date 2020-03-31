@@ -1,3 +1,5 @@
+// Consider Flickity js library for title screen
+
 import React from 'react';
 import Penny from '../assets/penny.JPG';
 import Brooks from '../assets/brooks.jpg';
