@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Penny from '../assets/penny.JPG';
 import Brooks from '../assets/brooks.jpg';
 import Add from '../assets/add.png';
+import firebase from '../firebase';
 
 
 class Title extends Component{
@@ -27,6 +28,11 @@ class Title extends Component{
                 showRemove: false
             })
         }
+    }
+
+    // Logout function
+    logout = () => {
+        firebase.auth().signOut();
     }
 
     render(){
@@ -76,6 +82,8 @@ class Title extends Component{
                         :
                             <p className="titleScreenManagePets" onClick={this.managePets}>save changes</p>
                     }
+
+                    <p className="titleScreenManagePets" onClick={this.logout}>Logout</p>
     
                 </div>
     

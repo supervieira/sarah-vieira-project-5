@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css'
 import firebase from './firebase';
 
+import Login from './Components/Login'
 import Title from './Components/Title';
 import Home from './Components/Home';
 import ProfileForm from './Components/ProfileForm';
@@ -25,12 +26,26 @@ class App extends Component {
       currentPet: {},
       currentPetInfo: {},
       petId: '',
-      newPet: false
+      newPet: false,
+      user: {}
     }
+  }
+
+  // Firebase authentication
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        this.setState({user})
+      }
+      else{
+        this.setState({user: null})
+      }
+    })
   }
 
   // Obtaining data from Firebase
   componentDidMount(){
+    this.authListener();
     this.updatePetsArray();
   }
 
@@ -161,13 +176,26 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-        <Title
+        {
+          this.state.user ?
+            <Title
+              addPet={this.addPet}
+              currentPet={this.state.currentPet}
+              pets={this.state.pets}
+              selectedPet={this.selectedPet}
+              deletePet={this.deletePet}
+            />
+          :
+            <Login/>
+        }
+
+        {/* <Title
           addPet={this.addPet}
           currentPet={this.state.currentPet}
           pets={this.state.pets}
           selectedPet={this.selectedPet}
           deletePet={this.deletePet}
-        />
+        /> */}
 
         {
           this.state.petId !== "" ?

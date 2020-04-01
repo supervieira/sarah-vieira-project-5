@@ -45,6 +45,7 @@ h1,h2,h3{
   margin: 0 auto;
 }
 
+.Login,
 .titleScreen,
 .Home,
 .OverallHealth,
@@ -53,6 +54,7 @@ h1,h2,h3{
   min-height: 100vh;
 }
 
+.Login,
 .titleScreen,
 .Home,
 .OverallHealth,
@@ -91,6 +93,14 @@ button{
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 15px;
+}
+
+/* Login screen */
+
+.Login{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 /* TITLE PAGE STYLING */
