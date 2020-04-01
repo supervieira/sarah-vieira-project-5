@@ -30,7 +30,6 @@ class Title extends Component{
     }
 
     render(){
-        console.log(this.props.pets)
         return(
             <div className="titleScreen" id="title">
                 <h1>Fetch</h1>
@@ -51,7 +50,7 @@ class Title extends Component{
                         {
                             this.props.pets.map((pet)=>{
                                 return(
-                                    <li>
+                                    <li key={pet.name}>
                                         <a className="titleScreenPetDiv" href="#home" onClick={()=>{this.props.selectedPet(pet)}}>
                                             <div className="titleScreenPetImage">
                                                 <img className="profileImage" src={pet.overallHealth.url} alt="Pet" />
