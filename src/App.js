@@ -22,17 +22,7 @@ class App extends Component {
 
     this.state = {
       pets: [],
-      currentPet: {
-        name: '',
-        age: '',
-        breed: '',
-        sex: '',
-        species: '',
-        url: '',
-        photo: '',
-        imgFile: '',
-        imgSrc: null
-      },
+      currentPet: {},
       currentPetInfo: {},
       petId: '',
       newPet: false
@@ -41,23 +31,7 @@ class App extends Component {
 
   // Obtaining data from Firebase
   componentDidMount(){
-
-    const dbPets = firebase.database().ref('pets')
-
-    dbPets.on('value', (response) => {
-      const pets = response.val();
-
-      const petsArr = Object.keys(pets).map((name) => {
-        return {
-          name: name,
-          ...pets[name]
-        }
-      });
-
-      this.setState({
-        pets: petsArr,
-      })
-    })
+    this.updatePetsArray();
   }
 
   // onSubmit event handler for Profile form submit
@@ -90,7 +64,10 @@ class App extends Component {
           imgFile: userInput.imgFile,
           imgSrc: userInput.imgSrc
         },
-        petId: key
+        petId: key,
+        currentPetInfo: {
+          calendar: {}
+        }
       }, () => {
         const dbOverallHealth = firebase.database().ref('pets/' + key + '/overallHealth')
         dbOverallHealth.update(this.state.currentPet)
@@ -164,6 +141,23 @@ class App extends Component {
     })
   }
 
+  // Function to delete pet
+  deletePet = (pet) => {
+    const dbPetToRemove = firebase.database().ref('pets/');
+    dbPetToRemove.child(pet.name).remove();
+
+    this.updatePetsArray();
+
+    if(this.state.petId === pet.name){
+      this.setState({
+        currentPet: {},
+        currenPetInfo: [],
+        petId: '',
+        newPet: false
+      })
+    }
+  }
+
   render(){
     return(
       <div className="App">
@@ -172,6 +166,7 @@ class App extends Component {
           currentPet={this.state.currentPet}
           pets={this.state.pets}
           selectedPet={this.selectedPet}
+          deletePet={this.deletePet}
         />
 
         {

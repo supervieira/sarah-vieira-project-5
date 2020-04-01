@@ -112,6 +112,19 @@ h1{
 
 .titleScreen li{
   list-style: none;
+  position: relative;
+}
+
+.deletePet{
+  position: absolute;
+  color: black;
+  font-weight: bold;
+  font-size: 33px;
+  top: 8%;
+  right: 18%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 
 .titleScreen h2{
@@ -366,6 +379,7 @@ span{
 .Footer{
   text-align: center;
   padding: 1px;
+  border-top: 4px solid black;
 }
 
 
@@ -387,6 +401,10 @@ span{
   color: white;
   outline: 1px solid white;
   cursor: pointer;
+}
+
+.deletePet:hover{
+  color: red;
 }
 
 input:focus,

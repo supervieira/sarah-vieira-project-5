@@ -24,7 +24,7 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
-        const symptomArray = [];
+        let symptomArray = [];
         for (let key in this.props.petInfo.calendar.symptoms){            
             const temp = {
                 key: key,
@@ -34,7 +34,7 @@ class Calendar extends Component {
             symptomArray.push(temp)
         }
 
-        const rxArray = [];
+        let rxArray = [];
         for (let key in this.props.petInfo.calendar.prescriptions) {
             const temp = {
                 key: key,
