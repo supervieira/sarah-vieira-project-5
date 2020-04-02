@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/sarah-vieira-project-5/static/css/main.553ce175.chunk.css",
-    "main.js": "/sarah-vieira-project-5/static/js/main.88e21b9e.chunk.js",
-    "main.js.map": "/sarah-vieira-project-5/static/js/main.88e21b9e.chunk.js.map",
+    "main.css": "/sarah-vieira-project-5/static/css/main.45af2e6b.chunk.css",
+    "main.js": "/sarah-vieira-project-5/static/js/main.8a184fc6.chunk.js",
+    "main.js.map": "/sarah-vieira-project-5/static/js/main.8a184fc6.chunk.js.map",
     "runtime-main.js": "/sarah-vieira-project-5/static/js/runtime-main.d17c7b49.js",
     "runtime-main.js.map": "/sarah-vieira-project-5/static/js/runtime-main.d17c7b49.js.map",
-    "static/js/2.428fe5ab.chunk.js": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js",
-    "static/js/2.428fe5ab.chunk.js.map": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js.map",
+    "static/js/2.b43ad38e.chunk.js": "/sarah-vieira-project-5/static/js/2.b43ad38e.chunk.js",
+    "static/js/2.b43ad38e.chunk.js.map": "/sarah-vieira-project-5/static/js/2.b43ad38e.chunk.js.map",
     "index.html": "/sarah-vieira-project-5/index.html",
-    "precache-manifest.58e58dace7299662aa6a317d2d3275e2.js": "/sarah-vieira-project-5/precache-manifest.58e58dace7299662aa6a317d2d3275e2.js",
+    "precache-manifest.4f171653255c24a2c5ab76d619f70041.js": "/sarah-vieira-project-5/precache-manifest.4f171653255c24a2c5ab76d619f70041.js",
     "service-worker.js": "/sarah-vieira-project-5/service-worker.js",
-    "static/css/main.553ce175.chunk.css.map": "/sarah-vieira-project-5/static/css/main.553ce175.chunk.css.map",
-    "static/js/2.428fe5ab.chunk.js.LICENSE.txt": "/sarah-vieira-project-5/static/js/2.428fe5ab.chunk.js.LICENSE.txt",
+    "static/css/main.45af2e6b.chunk.css.map": "/sarah-vieira-project-5/static/css/main.45af2e6b.chunk.css.map",
+    "static/js/2.b43ad38e.chunk.js.LICENSE.txt": "/sarah-vieira-project-5/static/js/2.b43ad38e.chunk.js.LICENSE.txt",
     "static/media/brooks.jpg": "/sarah-vieira-project-5/static/media/brooks.8a7b3ee4.jpg",
     "static/media/diagnosis.png": "/sarah-vieira-project-5/static/media/diagnosis.2241c6d9.png",
     "static/media/dog.png": "/sarah-vieira-project-5/static/media/dog.68fcd000.png",
@@ -24,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d17c7b49.js",
-    "static/js/2.428fe5ab.chunk.js",
-    "static/css/main.553ce175.chunk.css",
-    "static/js/main.88e21b9e.chunk.js"
+    "static/js/2.b43ad38e.chunk.js",
+    "static/css/main.45af2e6b.chunk.css",
+    "static/js/main.8a184fc6.chunk.js"
   ]
 }

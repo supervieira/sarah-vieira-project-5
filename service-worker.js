@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sarah-vieira-project-5/precache-manifest.58e58dace7299662aa6a317d2d3275e2.js"
+  "/sarah-vieira-project-5/precache-manifest.4f171653255c24a2c5ab76d619f70041.js"
 );
 
 self.addEventListener('message', (event) => {
