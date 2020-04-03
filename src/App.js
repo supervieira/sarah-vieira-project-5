@@ -66,13 +66,29 @@ class App extends Component {
         },
         petId: key,
         currentPetInfo: {
-          calendar: {}
+          calendar: {},
+          overallHealth: {
+            name: userInput.userInputName,
+            age: userInput.userInputAge,
+            breed: userInput.userInputBreed,
+            sex: userInput.userInputSex,
+            species: userInput.userInputSpecies,
+            url: userInput.userInputUrl,
+            photo: userInput.userInputPhoto,
+            imgFile: userInput.imgFile,
+            imgSrc: userInput.imgSrc
+          },
+          name: key
         }
       }, () => {
         const dbOverallHealth = firebase.database().ref('pets/' + key + '/overallHealth')
         dbOverallHealth.update(this.state.currentPet)
   
         this.updatePetsArray();
+
+        this.selectedPet(this.state.currentPetInfo);
+
+        console.log(this.state.pets)
       });
     }
     
@@ -105,7 +121,7 @@ class App extends Component {
 
     this.setState({
       currentPet: {},
-      currenPetInfo: [],
+      currentPetInfo: {},
       petId: '',
       newPet: true
     });
@@ -162,9 +178,9 @@ class App extends Component {
     return(
       <div className="App">
         <Title
-          addPet={this.addPet}
-          currentPet={this.state.currentPet}
+          // currentPet={this.state.currentPet}
           pets={this.state.pets}
+          addPet={this.addPet}
           selectedPet={this.selectedPet}
           deletePet={this.deletePet}
         />
