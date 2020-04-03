@@ -192,13 +192,23 @@ class App extends Component {
                 <ProfileForm
                   functionFromParent={this.submitUserInput}
                 />
-              </div>     
-              
-              <div className="wrapper">
-                <button className="back">
-                  <a href="#home">Back</a>
-                </button>
               </div>
+
+              {
+                this.state.newPet ?
+                  <div className="wrapper">
+                    <button className="back">
+                      <a href="#title">Back</a>
+                    </button>
+                  </div>
+                :
+                  <div className="wrapper">
+                    <button className="back">
+                      <a href="#home">Home</a>
+                    </button>
+                  </div>
+              }     
+              
             </div>
           :
             null
