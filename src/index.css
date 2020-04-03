@@ -49,6 +49,7 @@ h1,h2,h3{
 .Home,
 .OverallHealth,
 .Calendar,
+.Diet,
 .Toxicity{
   min-height: 100vh;
 }
@@ -57,6 +58,7 @@ h1,h2,h3{
 .Home,
 .OverallHealth,
 .Calendar,
+.Diet,
 .Toxicity,
 .Footer{
   letter-spacing: 2px;
@@ -66,6 +68,7 @@ h1,h2,h3{
 .Home,
 .OverallHealth,
 .Calendar,
+.Diet,
 .Toxicity{
   padding: 20px 0;
 }
@@ -73,6 +76,7 @@ h1,h2,h3{
 .titleScreen,
 .Home,
 .Calendar,
+.Diet,
 .Toxicity,
 .Footer{
   line-height: 1.6;
@@ -338,6 +342,7 @@ span{
 }
 
 .Calendar h2,
+.Diet h2,
 .OverallHealth h2,
 .Toxicity h2{
   font-size: 60px;

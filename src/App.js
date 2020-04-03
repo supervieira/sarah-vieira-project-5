@@ -6,6 +6,7 @@ import Title from './Components/Title';
 import Home from './Components/Home';
 import ProfileForm from './Components/ProfileForm';
 import PrintInput from './Components/PrintInput';
+import Diet from './Components/Diet';
 import Calendar from './Components/Calendar';
 import Toxicity from './Components/Toxicity';
 import Footer from './Components/Footer'
@@ -220,6 +221,14 @@ class App extends Component {
               petInfo={this.state.currentPetInfo}
             />
           : null
+        }
+
+        {
+          this.state.petId !== "" ?
+            <Diet
+              petInfo={this.state.currentPetInfo}
+            />
+            : null
         }
 
         {
