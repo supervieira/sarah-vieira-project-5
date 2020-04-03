@@ -197,13 +197,13 @@ class App extends Component {
               {
                 this.state.newPet ?
                   <div className="wrapper">
-                    <button className="back">
+                    <button className="back" tabindex="-1">
                       <a href="#title">Back</a>
                     </button>
                   </div>
                 :
                   <div className="wrapper">
-                    <button className="back">
+                    <button className="back" tabindex="-1">
                       <a href="#home">Home</a>
                     </button>
                   </div>

@@ -382,28 +382,43 @@ span{
   border-top: 4px solid black;
 }
 
+.titleScreenManagePets{
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  border: 1px solid rgba(211,211,211,0.568);
+  margin: 30px auto 0;
+  padding: 3px 25px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
 
 
 /* Pseudoelements */
 
-.titleScreenPetDiv:hover .titleScreenPetImage{
+.titleScreenPetDiv:hover .titleScreenPetImage,
+.titleScreenPetDiv:focus .titleScreenPetImage
+{
   color: white;
   outline: 2px solid white;
   cursor: pointer;
 }
 
-.titleScreenPetDiv:hover .titleScreenPetText{
+.titleScreenPetDiv:hover .titleScreenPetText,
+.titleScreenPetDiv:focus .titleScreenPetText{
   color: white;
   cursor: pointer;
 }
 
-.titleScreenManagePets:hover{
+.titleScreenManagePets:hover,
+.titleScreenManagePets:focus{
   color: white;
   outline: 1px solid white;
   cursor: pointer;
 }
 
-.deletePet:hover{
+.deletePet:hover,
+.deletePet:focus{
   color: red;
 }
 
@@ -414,7 +429,9 @@ button:focus{
 }
 
 button:hover,
-button:hover a{
+button:hover a,
+button:focus,
+button:focus a{
   background: grey;
   color: white;
 }

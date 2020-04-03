@@ -11,7 +11,7 @@ function Toxicity(){
                     <img src={PetPoisons} alt="Diagram of household toxins to pets"/>
                 </div>
     
-                <button className="back">
+                <button className="back" tabindex="-1">
                     <a href="#home">Back</a>
                 </button>
             </div>

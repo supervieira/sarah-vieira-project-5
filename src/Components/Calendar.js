@@ -256,7 +256,7 @@ class Calendar extends Component {
                         </form>
                     </div>
                             
-                    <button className="back">
+                    <button className="back" tabindex="-1">
                         <a href="#home">Back</a>
                     </button>
                 </div>

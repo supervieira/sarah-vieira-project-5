@@ -59,7 +59,7 @@ class Title extends Component{
                                         </a> 
                                         {
                                             this.state.showRemove ?
-                                                <p className="deletePet" onClick={() => {this.props.deletePet(pet)}}>x</p>
+                                                <p className="deletePet" onClick={() => {this.props.deletePet(pet)}} tabindex='0'>x</p>
                                             :
                                                 null
                                         }
@@ -71,9 +71,9 @@ class Title extends Component{
                     
                     {
                         !this.state.showRemove ?
-                            <p className="titleScreenManagePets" onClick={this.managePets}>manage pets</p>
+                            <p className="titleScreenManagePets" onClick={this.managePets} tabindex="0">manage pets</p>
                         :
-                            <p className="titleScreenManagePets" onClick={this.managePets}>save changes</p>
+                            <p className="titleScreenManagePets" onClick={this.managePets} tabindex="0">save changes</p>
                     }
     
                 </div>
