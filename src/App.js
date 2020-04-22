@@ -227,6 +227,7 @@ class App extends Component {
           this.state.petId !== "" ?
             <Diet
               petInfo={this.state.currentPetInfo}
+              functionFromParent={this.submitUserInput}
             />
             : null
         }
